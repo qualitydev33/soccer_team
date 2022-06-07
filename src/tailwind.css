@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+h2 {
+    font-size: 24px;
+}
+
 h3 {
     font-size: 18px;
 }
@@ -19,6 +23,10 @@ h6 {
 
 input:focus {
     outline: none;
+}
+
+.box-shadow {
+    box-shadow: 0px 12px 28px rgba(22, 22, 22, 0.5);
 }
 
 
@@ -49,6 +57,18 @@ input:focus {
     background: #555;
 }
 
-.box-shadow {
-    box-shadow: 0px 12px 28px rgba(22, 22, 22, 0.5);
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
 }

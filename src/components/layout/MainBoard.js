@@ -18,7 +18,7 @@ const MainBoard = ({
                     <Route 
                         path="/formation" 
                         exact 
-                        element={<RosterFormation />}
+                        element={<RosterFormation cn='flex flex-col py-10 gap-y-6' />}
                     ></Route>
                 </Routes>
             </div>

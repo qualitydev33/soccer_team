@@ -9,32 +9,35 @@ import { initTeam, resetTeam } from "../../store/team/slice"
 
 
 const ImportModal = ({
-    closeEvent
+    cancelFunc,
+    importFunc
 }) => {
     const [summary, setSummary] = useState(null)
-    const [teamData, setTeamData] = useState([])
+    const [teamData, setTeamData] = useState({})
     const dispatch = useDispatch()
 
     const handleDataFromFilePicker = (fileData) => {
         setTeamData(fileData.data)
         setSummary({
-            "Total Players": fileData.data.length,
-            "Goalkeepers": fileData.data.filter(item => item.position === "Goalkeeper").length,
-            "Defenders": fileData.data.filter(item => item.position === "Defender").length,
-            "Midfielders": fileData.data.filter(item => item.position === "Midfielder").length,
-            "Forwards": fileData.data.filter(item => item.position === "Forward").length,
+            "Total Players": Object.keys(fileData.data).length,
+            "Goalkeepers": Object.values(fileData.data).filter(item => item.position === "Goalkeeper").length,
+            "Defenders": Object.values(fileData.data).filter(item => item.position === "Defender").length,
+            "Midfielders": Object.values(fileData.data).filter(item => item.position === "Midfielder").length,
+            "Forwards": Object.values(fileData.data).filter(item => item.position === "Forward").length,
         })
     }
     const handleImport = () => {
-        dispatch(initTeam(teamData))
-        closeEvent()
+        if (teamData !== {}) {
+            cancelFunc()
+            importFunc(teamData)
+        }
     }
     return (
         <div className="absolute top-0 left-0 w-screen h-screen flex bg-black bg-opacity-60">
             <div className="w-full m-auto max-w-[800px] max-h-[600px] px-6 pt-[18px] pb-6 flex flex-col bg-[#383838]">
                 <div className="flex items-center justify-between">
                     <h3 className="font-semibold text-[#F8F8F8]">Importer</h3>
-                    <button onClick={closeEvent}>
+                    <button onClick={cancelFunc}>
                         <CloseIcon />
                     </button>
                 </div>
@@ -73,7 +76,8 @@ const ImportModal = ({
 }
 
 ImportModal.prototype = {
-    closeEvent: PropTypes.func
+    cancelFunc: PropTypes.func,
+    importFunc: PropTypes.func
 }
 
 export default ImportModal;

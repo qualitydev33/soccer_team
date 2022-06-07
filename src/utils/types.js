@@ -3,6 +3,7 @@ import TableData from "../data/table.json"
 
 
 export const PlayerType = PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     player_name: PropTypes.string.isRequired,
     player_image: PropTypes.string.isRequired,
     jersey_number: PropTypes.string.isRequired,

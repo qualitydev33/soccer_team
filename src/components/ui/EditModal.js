@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+
 import { PlayerType } from '../../utils/types'
 import CloseIcon from '../Icon/CloseIcon'
 import Button from './Button'
@@ -6,13 +9,33 @@ import Input from './Input'
 import RadioButton from './RadioButton'
 import SelectInput from './SelectInput'
 import tableData from '../../data/table.json'
+import { updatePlayer } from '../../store/team/slice'
+
 const EditModal = ({
     player,
     closeFun,
 }) => {
-    console.log(player)
+    const dispatch = useDispatch()
+    const [activePlayer, setActivePlayer] = useState({})
+    const [submitDisabled, setSubmitDisabled] = useState(true)
+    const handleActivePlayer = (obj) => {
+        setActivePlayer({...activePlayer, [obj.name]: obj.value})
+    }
+    const handleSubmit = () => {
+        console.log("activePlayer=", activePlayer)
+        dispatch(updatePlayer(activePlayer))
+        closeFun()
+    }
+    useEffect(() => {
+        if (JSON.stringify(activePlayer) !== JSON.stringify(player)) setSubmitDisabled(false)
+        
+    }, [activePlayer])
+    useEffect(() => {
+        setActivePlayer(player)
+    }, [])
     return (
-        <>
+        <>  
+            {/* <span className='absolute z-50 top-[100px] left-[100px] text-green-500 font-semibold'>{JSON.stringify(activePlayer)}</span> */}
             <div className="absolute top-0 left-0 w-screen h-screen flex bg-black bg-opacity-60">
                 <div className="w-auto m-auto max-h-[600px] min-w-[480px] p-6 flex flex-col gap-y-6 bg-[#383838] rounded-lg">
                     <div className='flex items-center justify-between'>
@@ -23,29 +46,64 @@ const EditModal = ({
                     </div>
                     <div className='flex flex-col gap-y-4'>
                         <div className='flex items-center gap-x-3'>
-                            <Input label="Player Name" defaultValue={player.player_name} />
-                            <Input label="Jersey Number" defaultValue={player.jersey_number} />
+                            <Input
+                                type="text" 
+                                label="Player Name"
+                                name="player_name" 
+                                defaultValue={activePlayer.player_name}
+                                changeFun={handleActivePlayer}
+                            />
+                            <Input
+                                type="number" 
+                                label="Jersey Number" 
+                                name="jersey_number"
+                                defaultValue={activePlayer.jersey_number}
+                                changeFun={handleActivePlayer}
+                            />
                         </div>
                         <div className='flex items-center gap-x-3'>
-                            <Input label="Height" defaultValue={player.height} />
-                            <Input label="Weight" defaultValue={player.weight} />
+                            <Input
+                                type="number" 
+                                label="Height"
+                                name="height"
+                                defaultValue={activePlayer.height}
+                                changeFun={handleActivePlayer}
+                            />
+                            <Input 
+                                type="number"
+                                label="Weight" 
+                                name="weight"
+                                defaultValue={activePlayer.weight}
+                                changeFun={handleActivePlayer}
+                            />
                         </div>
-                        <Input label="Nationality" defaultValue={player.nationality} />
+                        <Input 
+                            type="text"
+                            label="Nationality" 
+                            name="nationality"
+                            defaultValue={activePlayer.nationality}
+                            changeFun={handleActivePlayer}
+                        />
                         <SelectInput 
                             label='Position' 
-                            options={tableData.PLAYER_POSITION} 
+                            defaultVal={player.position}
+                            name="position"
+                            options={tableData.PLAYER_POSITION}
+                            clickFun={handleActivePlayer}
                         />
                         <RadioButton 
-                            label="Starter" 
-                            defaultValue={player.starter} 
-                            changeFun={() => {}}
+                            label="Starter"
+                            name="starter"
+                            defaultValue={activePlayer.starter} 
+                            changeFun={handleActivePlayer}
                         />
                     </div>
                     <div className='flex justify-end'>
                         <Button 
                             type='warn' 
                             title="Edit Player"
-                            clickFun={() => {}}
+                            disabled={submitDisabled}
+                            clickFun={handleSubmit}
                         />
                     </div>
                     

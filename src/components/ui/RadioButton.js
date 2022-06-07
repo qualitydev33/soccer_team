@@ -5,12 +5,16 @@ import { useState } from 'react'
 const RadioButton = ({
     label,
     defaultValue,
+    name,
     changeFun
 }) => {
     const [activeRadio, setActiveRadio] = useState(false)
-    const handleRadio = (b) => {
-        setActiveRadio(b)
-        changeFun(b)
+    const handleRadio = (v) => {
+        setActiveRadio(v)
+        changeFun({
+            name: name,
+            value: v
+        })
     }
     useEffect(() => {
         setActiveRadio(defaultValue)
@@ -45,6 +49,7 @@ const RadioButton = ({
 RadioButton.prototype = {
     label: PropTypes.string.isRequired,
     defaultValue: PropTypes.bool,
+    name: PropTypes.string.isRequired,
     changeFun: PropTypes.func.isRequired
 }
 

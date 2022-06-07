@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 params: type : primary, warn, danger
 */
 const Button = ({
-    type, 
+    type,
     title, 
+    disabled,
     clickFun
 }) => {
     const handleBtnType = (str) => {
@@ -26,7 +27,8 @@ const Button = ({
     return (
         <>
             <button 
-                className={`${handleBtnType(type)} px-5 rounded-lg h-11 flex items-center justify-center text-sm leading-normal font-medium`}
+                className={`${disabled ? 'bg-transparent text-[#707070]' : handleBtnType(type)} px-5 rounded-lg h-11 flex items-center justify-center text-sm leading-normal font-medium`}
+                disabled={disabled}
                 onClick={() => {clickFun()}}
             >{title}</button>
         </>
@@ -35,6 +37,7 @@ const Button = ({
 Button.propTypes = {
     type: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
     clickFun: PropTypes.func.isRequired
 };
 

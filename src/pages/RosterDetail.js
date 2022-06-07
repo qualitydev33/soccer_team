@@ -1,5 +1,6 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useState, useEffect, useContext } from "react"
+import { ReactReduxContext, useDispatch, useSelector } from "react-redux"
+import CheckIcon from "../components/Icon/CheckIcon"
 import DeleteIcon from "../components/Icon/DeleteIcon"
 import PenIcon from "../components/Icon/PenIcon"
 import ThreeDotIcon from "../components/Icon/ThreeDotIcon"
@@ -9,7 +10,10 @@ import DeleteModal from "../components/ui/DeleteModal"
 import EditModal from "../components/ui/EditModal"
 import ImportModal from "../components/ui/ImportModal"
 import SearchInput from "../components/ui/SearchInput"
+import TeamNameEditor from "../components/ui/TeamNameEditor"
 import TableData from "../data/table.json"
+import { resetTeamFromWStorage, initTeam, updateTeamName } from "../store/team/slice"
+import { arrToObj } from "../utils/js-func"
 
 function convertTableRow(rowData, field) {
     let result;
@@ -29,35 +33,69 @@ function convertTableRow(rowData, field) {
 }
 
 const RosterDetail = ({cn}) => {
-    const teamData = useSelector((state) => state.team.data)
+    const dispatch = useDispatch()
+    const {store} = useContext(ReactReduxContext)
+    const teamStore = useSelector(state => state.team.data)
+    const teamNameStore = useSelector(state => state.team.name)
+    const [searchPlayers, setSearchPlayers] = useState([])
     const [activePlayer, setActivePlayer] = useState(null)
     const [activeImportModal, setActiveImportModal] = useState(false)
     const [activeDeleteModal, setActiveDeleteModal] = useState(false)
     const [activeEditModal, setActiveEditModal] = useState(false)
 
+    const handleTeamName = (str) => {
+        dispatch(updateTeamName(str))
+    }
     const handleEditModal = (player) => {
         setActiveEditModal(true)
+        setActivePlayer(player)
+    }
+    const handleDeleteModal = (player) => {
+        setActiveDeleteModal(true)
         setActivePlayer(player)
     }
     const handleShowImportModal = () => {
         setActiveImportModal(true)
     }
+    const handleImport = (data) => {
+        dispatch(initTeam(data))
+    }
+    const handleSearch = (searchKey) => {
+        let filterResult = Object.values(searchPlayers).filter(item => String(item.player_name).toLowerCase().includes(searchKey))
+        let searchResult = arrToObj(filterResult, 'id')
+        setSearchPlayers(searchResult)
+    }
+    const handleResetSearch = () => {
+        setSearchPlayers(teamStore)
+    }
+
+    useEffect(() => {
+        setSearchPlayers(teamStore)
+    }, [teamStore])
+
+    // useEffect(() => {
+    //     dispatch(resetTeamFromWStorage())
+    //     let teamData = store.getState().team.data
+    //     setSearchPlayers(teamData)
+    // }, [])
     return (
         <>
             <div className={cn}>
                 <div className="flex items-center">
-                    <div className="flex flex-col">
-                        <h6 className="text-[#FEA013] leading-normal font-medium">Roster Detail</h6>
-                        <div className="flex items-center gap-x-3">
-                            <h3 className="text-white leading-tight font-semibold">My Team</h3>
-                            <PenIcon />
-                        </div>
-                    </div>
+                    <TeamNameEditor
+                        title="Roster Detail"
+                        defaultTeamName={teamNameStore}
+                        updateFunc={handleTeamName}
+                    />
                     <div className="flex items-center ml-auto gap-x-2">
-                        <SearchInput placeholder={'Find Player'} />
+                        <SearchInput 
+                            placeholder={'Find Player'} 
+                            searchFunc={handleSearch}
+                            resetFunc={handleResetSearch}
+                        />
                         <Button 
-                            title='Import Team'
-                            type='warn'
+                            title={`${Object.values(teamStore).length > 0 ? 'Re-Import Team' : 'Import Team'}`}
+                            type={`${Object.values(teamStore).length > 0 ? 'primary' : 'warn'}`}
                             clickFun={handleShowImportModal}
                         />
                     </div>
@@ -75,7 +113,7 @@ const RosterDetail = ({cn}) => {
                         <h6 className="w-7 invisible">DD</h6>
                     </div>
 
-                    {teamData.length === 0 && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col text-sm">
+                    {Object.values(teamStore).length === 0 && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col text-sm">
                         <h5 className="text-[#CBCBCB]">You do not have any players on the roster</h5>
                         <button 
                             className="text-[#FEA013] mt-2"
@@ -84,7 +122,7 @@ const RosterDetail = ({cn}) => {
                     </div>}
 
                     <div className="flex flex-col flex-1 py-5 gap-y-5 overflow-auto h-full">
-                        {teamData.length !== 0 && teamData.map((item, idx) => {
+                        {Object.values(searchPlayers) !== 0 && Object.values(searchPlayers).map((item, idx) => {
                             return (
                                 <div key={idx} className="flex items-center justify-between">
                                     {TableData.TABLE_FIELD.map((sub_item, sub_idx) => {
@@ -101,8 +139,8 @@ const RosterDetail = ({cn}) => {
                                     })}
                                     <div className="w-7 relative">
                                         <ActionList actionBtn={<ThreeDotIcon />} title="Actions" list={[
-                                            {title: "Edit Player", icon: <PenIcon />, action: () => {handleEditModal(teamData[idx])}},
-                                            {title: "Delete Player", icon: <DeleteIcon />, action: () => {setActiveDeleteModal(true)}}
+                                            {title: "Edit Player", icon: <PenIcon />, action: () => {handleEditModal(searchPlayers[item.id])}},
+                                            {title: "Delete Player", icon: <DeleteIcon />, action: () => {handleDeleteModal(searchPlayers[item.id])}}
                                         ]} />
                                     </div>
                                 </div>
@@ -112,18 +150,25 @@ const RosterDetail = ({cn}) => {
                 </div>
             </div>
 
-            {activeImportModal && <ImportModal closeEvent={() => setActiveImportModal(false)} />}
+            {activeImportModal && 
+                <ImportModal 
+                    cancelFunc={() => setActiveImportModal(false)}
+                    importFunc={handleImport} 
+                />
+            }
             {activeDeleteModal && 
-            <DeleteModal 
-                title="Are you sure?"
-                desc="This action cannot be undone."
-                closeFun={() => {setActiveDeleteModal(false)}}
-            />}
+                <DeleteModal
+                    playerId={activePlayer.id} 
+                    title="Are you sure?"
+                    desc="This action cannot be undone."
+                    closeFun={() => {setActiveDeleteModal(false)}}
+                />
+            }
             {activeEditModal &&
-            <EditModal
-                player={activePlayer}
-                closeFun={() => {setActiveEditModal(false)}}    
-            />
+                <EditModal
+                    player={activePlayer}
+                    closeFun={() => {setActiveEditModal(false)}}    
+                />
             }
 
             {/* <div className="absolute top-10 left-10 w-[200px] h-[500px] bg-gray-200 flex flex-col">

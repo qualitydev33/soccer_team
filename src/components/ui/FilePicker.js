@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import PapaParse from 'papaparse'
+import {v4 as UUID_v4} from 'uuid'
+import { arrToObj } from '../../utils/js-func';
 
 function dataCheck(item) {
     // if (item.saves === "N/A") item.saves = null
     // if (item.clean_sheets === "N/A") item.clean_sheets = null
+    item.id = UUID_v4()
     if (item.starter === "Yes") item.starter = true
     else item.starter = false
     return item
@@ -24,10 +27,8 @@ function csvToArray(str) {
           encoding: 'UTF-8',
         }),
     )
-    console.log(csvData)
-    // return csvData
     var filteredData = csvData.data.map(dataCheck) 
-    csvData.data = filteredData
+    csvData.data = arrToObj(filteredData, 'id')
     return csvData
      
 }
