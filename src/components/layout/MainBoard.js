@@ -1,0 +1,33 @@
+import { Route, Routes } from "react-router-dom"
+import PropTypes from 'prop-types';
+import RosterDetail from "../../pages/RosterDetail"
+import RosterFormation from "../../pages/RosterFormation"
+
+const MainBoard = ({
+    cn
+}) => {
+    return (
+        <>
+            <div className={cn}>
+                <Routes>
+                    <Route 
+                        path="/detail" 
+                        exact 
+                        element={<RosterDetail cn='flex flex-col h-screen py-10 gap-y-6' />}
+                    ></Route>
+                    <Route 
+                        path="/formation" 
+                        exact 
+                        element={<RosterFormation />}
+                    ></Route>
+                </Routes>
+            </div>
+        </>
+    )
+}
+
+MainBoard.propTypes = {
+    cn: PropTypes.string,
+};
+
+export default MainBoard
