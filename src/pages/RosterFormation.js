@@ -66,21 +66,24 @@ const RosterFormation = ({
                         />
                     </div>
 
-                    <div className="relative bg-c_neutral_2 w-full h-full p-8 rounded-lg flex flex-col flex-1">
-                        <div className='w-full flex gap-x-8'>
-                            <Pitch 
-                                cn="relative flex-1"
-                                startPlayers={startPlayers}
-                                playersPos={playersPos}
-                                activePlayer={activePlayer}
-                                changeActiveFun={(id) => handleChangeActivePlayer(id)}
-                            />
-                            <div className='w-[322px]'>
-                                <PlayerCard player={activePlayer} />
+                    <div className='relative h-full'>
+                        <div className="absolute inset-0 bg-c_neutral_2 w-full h-full p-8 rounded-lg flex flex-col flex-1">
+                            <div className='w-full h-full flex gap-x-8'>
+                                <Pitch 
+                                    cn="relative flex-1"
+                                    startPlayers={startPlayers}
+                                    playersPos={playersPos}
+                                    activePlayer={activePlayer}
+                                    changeActiveFun={(id) => handleChangeActivePlayer(id)}
+                                />
+                                <div className='w-[322px]'>
+                                    <PlayerCard player={activePlayer} />
+                                </div>
                             </div>
+                            
                         </div>
-                        
                     </div>
+                    
                 </div>
             }
             
