@@ -12,10 +12,10 @@ const Button = ({
         let result = 'primary'
         switch (str) {
             case "primary":
-                result = "bg-transparent border border-c_border text-c_text_2"
+                result = "bg-transparent border border-c_border text-c_text_2 hover:text-c_text_1"
                 break;
             case "warn":
-                result = "bg-c_primary_yellow text-c_text_1"
+                result = "bg-c_primary_yellow text-c_text_1 hover:bg-c_primary_brown"
                 break;
             case "danger": 
                 result = "bg-c_primary_red text-c_text_1"

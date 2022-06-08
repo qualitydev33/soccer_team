@@ -1,17 +1,13 @@
-import { useState } from "react"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import HugIcon from "../Icon/HugIcon"
-import Logo from "../Icon/Logo"
-import RoutesData from "../../data/routes.json"
+import {Logo} from "../Icon"
 
 const LeftSide = ({
     routeList
 }) => {
-    const [activeTab, setActiveTab] = useState(0)
+    const location = useLocation()
     const navigate = useNavigate()
-    const handleLink = (idx, link) => {
-        setActiveTab(idx)
+    const handleLink = (link) => {
         navigate(link)
     }
     return (
@@ -24,9 +20,9 @@ const LeftSide = ({
                             <div 
                                 key={idx} 
                                 className={`grid grid-cols-3 items-center justify-center cursor-pointer`}
-                                onClick={() => {handleLink(idx, item.link)}}
+                                onClick={() => {handleLink(item.link)}}
                             >
-                                <div className={`bg-c_primary_yellow w-1 h-1 rounded-full ${activeTab === idx ? 'visible' : 'invisible'}`}></div>
+                                <div className={`bg-c_primary_yellow w-1 h-1 rounded-full ${item.link === location.pathname ? 'visible' : 'invisible'}`}></div>
                                 {item.icon}
                             </div>
                         )                            

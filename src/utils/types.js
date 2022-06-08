@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
-import TableData from "../data/table.json"
 
+export const TeamStatusForEntry = ['NO_DATA', 'NOT_ENOUGH_STARTER', 'TOO_MANY_STARTER']
+export const PLAYER_POSITIONS = ["Goalkeeper", "Defender", "Midfielder", "Forward"]
 
 export const PlayerType = PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     player_name: PropTypes.string.isRequired,
     player_image: PropTypes.string.isRequired,
     jersey_number: PropTypes.string.isRequired,
-    position: PropTypes.oneOf(TableData.PLAYER_POSITION),
+    position: PropTypes.oneOf(PLAYER_POSITIONS),
     height: PropTypes.number,
     weight: PropTypes.number,
     nationality: PropTypes.string,
@@ -20,5 +21,3 @@ export const PlayerType = PropTypes.shape({
     clean_sheets: PropTypes.number,
     saves: PropTypes.number
 })
-
-export const TeamStatusForEntry = ['NO_DATA', 'NOT_ENOUGH_STARTER', 'TOO_MANY_STARTER']

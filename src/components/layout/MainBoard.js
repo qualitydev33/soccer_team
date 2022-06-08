@@ -10,9 +10,9 @@ const MainBoard = ({
         <>
             <div className={cn}>
                 <Routes>
-                    <Route path="*" element={<Navigate to="/detail" replace />} />
+                    <Route path="*" element={<Navigate to="/" />} />
                     <Route 
-                        path="/detail" 
+                        path="/" 
                         exact 
                         element={<RosterDetail cn='flex flex-col h-screen py-10 gap-y-6' />}
                     ></Route>

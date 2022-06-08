@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import CheckIcon from '../Icon/CheckIcon'
-import PenIcon from '../Icon/PenIcon'
+import { useState, useEffect } from 'react'
+import {
+    CheckIcon,
+    PenIcon
+} from '../Icon'
+
+
 const TeamNameEditor = ({
     title,
     defaultTeamName,

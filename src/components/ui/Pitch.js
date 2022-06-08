@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types'
 import { PlayerType } from '../../utils/types'
-import PlayerPosition from './PlayerPosition'
+import {
+    PlayerPosition
+} from '../ui'
 const Pitch = ({
     cn,
     startPlayers,
-    playersPos
+    playersPos,
+    activePlayer,
+    changeActiveFun,
 }) => {
     return (
         <>
@@ -22,25 +26,30 @@ const Pitch = ({
                     </radialGradient>
                     </defs>
                 </svg>
-                {Object.values(playersPos).length === 11 && startPlayers.map((item, idx) => {
+                {Object.values(startPlayers).map((item, idx) => {
                     return (
-                        <div key={`starter_${idx}`}>
+                        <div key={`start-${idx}`} className={`absolute ${playersPos[item.id]} w-[150px] min-w-[150px] flex justify-center`}>
                             <PlayerPosition
-                                cn='absolute bottom-15% left-24%'
                                 player={item}
+                                activePlayer={activePlayer}
+                                clickFun={(id) => {changeActiveFun(id)}}
                             />
-                        </div>  
+                        </div>
+                          
                     )
                 })}
             </div>
+
         </>
     )
 }
 
 Pitch.prototype = {
-    cn: PropTypes.string,
-    startPlayers: PropTypes.arrayOf(PlayerType).isRequired,
-    playersPos: PropTypes.object
+    cn: PropTypes.string.isRequired,
+    startPlayers: PropTypes.object.isRequired,
+    playersPos: PropTypes.object.isRequired,
+    activePlayer: PlayerType.isRequired,
+    changeActiveFun: PropTypes.func.isRequired
 }
 
 export default Pitch

@@ -48,6 +48,7 @@ module.exports = {
         path: packageFolder,
         sourceMapFilename: '[file].map',
         filename: `assets/js/[name].min.js`,
+        publicPath: '/'
     },
 
     resolve: {
@@ -56,8 +57,7 @@ module.exports = {
     },
 
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.(t|j)sx?$/,
                 exclude: /node_modules/,
                 use: {
@@ -78,14 +78,13 @@ module.exports = {
             {
                 test: /\.s?[ac]ss$/i,
                 use: [
-                    isDevelopment ? 'style-loader' :
-                        {
-                            // save the css to external file
-                            loader: MiniCssExtractPlugin.loader,
-                            options: {
-                                esModule: false
-                            },
+                    isDevelopment ? 'style-loader' : {
+                        // save the css to external file
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            esModule: false
                         },
+                    },
                     {
                         // becombine other css files into one
                         // https://www.npmjs.com/package/css-loader
@@ -235,7 +234,8 @@ module.exports = {
         host: '0.0.0.0',
         compress: true,
         allowedHosts: 'all',
-        hot: true
+        hot: true,
+        historyApiFallback: true,
     },
 
     performance: {

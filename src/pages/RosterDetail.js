@@ -1,18 +1,24 @@
 import { useState, useEffect, useContext } from "react"
 import { ReactReduxContext, useDispatch, useSelector } from "react-redux"
-import CheckIcon from "../components/Icon/CheckIcon"
-import DeleteIcon from "../components/Icon/DeleteIcon"
-import PenIcon from "../components/Icon/PenIcon"
-import ThreeDotIcon from "../components/Icon/ThreeDotIcon"
-import ActionList from "../components/ui/ActionList"
-import Button from "../components/ui/Button"
-import DeleteModal from "../components/ui/DeleteModal"
-import EditModal from "../components/ui/EditModal"
-import ImportModal from "../components/ui/ImportModal"
-import SearchInput from "../components/ui/SearchInput"
-import TeamNameEditor from "../components/ui/TeamNameEditor"
+import {
+    ActionList,
+    Button,
+    LoadingSpinner,
+    SearchInput
+} from '../components/ui/Common'
+import {
+    DeleteIcon,
+    PenIcon,
+    ThreeDotIcon,
+} from '../components/Icon'
+import {
+    DeleteModal,
+    EditModal,
+    ImportModal,
+    TeamNameEditor
+} from '../components/ui'
 import TableData from "../data/table.json"
-import { resetTeamFromWStorage, initTeam, updateTeamName } from "../store/team/slice"
+import { initTeam, updateTeamName } from "../store/team/slice"
 import { utilArrToObj } from "../utils/js-func"
 
 function convertTableRow(rowData, field) {
@@ -37,7 +43,8 @@ const RosterDetail = ({cn}) => {
     const {store} = useContext(ReactReduxContext)
     const teamStore = useSelector(state => state.team.data)
     const teamNameStore = useSelector(state => state.team.name)
-    const [searchPlayers, setSearchPlayers] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [searchPlayers, setSearchPlayers] = useState({})
     const [activePlayer, setActivePlayer] = useState(null)
     const [activeImportModal, setActiveImportModal] = useState(false)
     const [activeDeleteModal, setActiveDeleteModal] = useState(false)
@@ -61,7 +68,7 @@ const RosterDetail = ({cn}) => {
         dispatch(initTeam(data))
     }
     const handleSearch = (searchKey) => {
-        let filterResult = Object.values(searchPlayers).filter(item => String(item.player_name).toLowerCase().includes(searchKey))
+        let filterResult = Object.values(searchPlayers).filter(item => String(item.player_name).toLowerCase().includes(searchKey) || String(item.position).toLowerCase().includes(searchKey))
         let searchResult = utilArrToObj(filterResult, 'id')
         setSearchPlayers(searchResult)
     }
@@ -74,13 +81,17 @@ const RosterDetail = ({cn}) => {
     }, [teamStore])
 
     useEffect(() => {
-        dispatch(resetTeamFromWStorage())
-        let teamData = store.getState().team.data
+       let teamData = store.getState().team.data
         setSearchPlayers(teamData)
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
     }, [])
     return (
         <>
-            <div className={cn}>
+            {loading && <LoadingSpinner />}
+
+            {!loading && <div className={cn}>
                 <div className="flex items-center">
                     <TeamNameEditor
                         title="Roster Detail"
@@ -113,42 +124,56 @@ const RosterDetail = ({cn}) => {
                         <h6 className="w-7 invisible">DD</h6>
                     </div>
 
-                    {Object.values(teamStore).length === 0 && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col text-sm">
-                        <h5 className="text-c_text_2">You do not have any players on the roster</h5>
-                        <button 
-                            className="text-c_primary_yellow mt-2"
-                            onClick={() => {handleShowImportModal()}}
-                        >Import Team</button>
-                    </div>}
+                    {Object.values(teamStore).length === 0 && 
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col text-sm">
+                            <h5 className="text-c_text_2">You do not have any players on the roster</h5>
+                            <button 
+                                className="text-c_primary_yellow mt-2"
+                                onClick={() => {handleShowImportModal()}}
+                            >Import Team</button>
+                        </div>
+                    }
 
-                    <div className="flex flex-col flex-1 py-5 gap-y-5 overflow-auto h-full">
-                        {Object.values(searchPlayers) !== 0 && Object.values(searchPlayers).map((item, idx) => {
-                            return (
-                                <div key={idx} className="flex items-center justify-between">
-                                    {TableData.TABLE_FIELD.map((sub_item, sub_idx) => {
-                                        return (
-                                            <div key={`row_${sub_idx}`} className="flex-1">
-                                                {sub_idx === 0 && <div className="flex items-center gap-x-2 w-[196px]">
-                                                    <img className="rounded-full border border-c_text_2" src={item.flag_image} alt={`flag-img`} width={24} height={24} />
-                                                    <h5 className="font-medium text-c_text_2">{item.player_name}</h5>
-                                                </div>}
-                                                {sub_idx !== 0 && <h5 className="text-left text-sm font-medium text-c_text_2">{convertTableRow(item, sub_item.toLowerCase().replaceAll(" ", "_"))}</h5>}
-                                                
+                    {Object.values(searchPlayers).length !== 0 &&
+                        <div className="relative flex flex-col flex-1">
+                            <div className="absolute inset-0 flex flex-col flex-1 py-5 gap-y-5 overflow-auto h-full">
+                                {Object.values(searchPlayers).map((item, idx) => {
+                                    return (
+                                        <div key={idx} className="flex items-center justify-between">
+                                            {TableData.TABLE_FIELD.map((sub_item, sub_idx) => {
+                                                return (
+                                                    <div key={`row_${sub_idx}`} className="flex-1">
+                                                        {sub_idx === 0 && <div className="flex items-center gap-x-2 w-[196px]">
+                                                            <img className="rounded-full border border-c_text_2" src={item.flag_image} alt={`flag-img`} width={24} height={24} />
+                                                            <h5 className="font-medium text-c_text_2">{item.player_name}</h5>
+                                                        </div>}
+                                                        {sub_idx !== 0 && <h5 className="text-left text-sm font-medium text-c_text_2">{convertTableRow(item, sub_item.toLowerCase().replaceAll(" ", "_"))}</h5>}
+                                                        
+                                                    </div>
+                                                )
+                                            })}
+                                            <div className="w-7 relative">
+                                                <ActionList 
+                                                    actionBtn={<ThreeDotIcon />} 
+                                                    title="Actions" 
+                                                    list={[
+                                                        {title: "Edit Player", icon: <PenIcon />, action: () => {handleEditModal(searchPlayers[item.id])}},
+                                                        {title: "Delete Player", icon: <DeleteIcon />, action: () => {handleDeleteModal(searchPlayers[item.id])}}
+                                                    ]}
+                                                />
                                             </div>
-                                        )
-                                    })}
-                                    <div className="w-7 relative">
-                                        <ActionList actionBtn={<ThreeDotIcon />} title="Actions" list={[
-                                            {title: "Edit Player", icon: <PenIcon />, action: () => {handleEditModal(searchPlayers[item.id])}},
-                                            {title: "Delete Player", icon: <DeleteIcon />, action: () => {handleDeleteModal(searchPlayers[item.id])}}
-                                        ]} />
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                    }
+                    
+
+                    
                 </div>
-            </div>
+            </div>}
 
             {activeImportModal && 
                 <ImportModal 
@@ -170,13 +195,6 @@ const RosterDetail = ({cn}) => {
                     closeFun={() => {setActiveEditModal(false)}}    
                 />
             }
-
-            {/* <div className="absolute top-10 left-10 w-[200px] h-[500px] bg-gray-200 flex flex-col">
-                <div className="w-full h-[50px] bg-green-700"></div>
-                <div className="w-full h-full bg-red-500"></div>
-            </div> */}
-
-            {/* <span className=" absolute top-[100px] left-0 text-green-500 text-sm">{JSON.stringify(teamData)}</span> */}
         </>
     )
 }

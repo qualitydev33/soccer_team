@@ -19,12 +19,12 @@ export const FORMATION_MODAL_CONTENT = {
 
 export const FORMATION_SYSTEM = {
     'sys-4-3-3': {
-        'goalkeeper': 'top-1/2 left-3% -translate-y-1/2',
+        'goalkeeper': ['top-1/2 left-2% -translate-y-1/2'],
         'defender': [
-            'top-10% left-24%',
-            'top-15% left-23%',
-            'bottom-15% left-23%',
-            'bottom-10% left-24%'
+            'top-10% left-23%',
+            'top-27% left-20%',
+            'bottom-27% left-20%',
+            'bottom-10% left-23%'
         ],
         'midfielder': [
             'top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2',
@@ -32,9 +32,9 @@ export const FORMATION_SYSTEM = {
             'bottom-15% left-1/2 -translate-x-1/2'
         ],
         'forward': [
-            'top-15% left-75%',
-            'top-1/2 left-77% -translate-y-1/2',
-            'bottom-15% left-75%'
+            'top-15% left-70%',
+            'top-1/2 left-74% -translate-y-1/2',
+            'bottom-15% left-70%'
         ]
     }
 }

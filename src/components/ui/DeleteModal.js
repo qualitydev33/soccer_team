@@ -1,9 +1,14 @@
-import { useState } from "react";
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { deletePlayerById } from '../../store/team/slice'
-import CloseIcon from "../Icon/CloseIcon";
-import Button from "./Button";
+import {
+    CloseIcon,
+} from '../Icon'
+import {
+    Button
+} from "./Common";
+
+
 const DeleteModal = ({
     playerId,
     title,

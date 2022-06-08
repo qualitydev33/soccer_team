@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const RadioButton = ({
     label,
@@ -17,6 +16,7 @@ const RadioButton = ({
         })
     }
     useEffect(() => {
+        console.log(defaultValue)
         setActiveRadio(defaultValue)
     }, [])
     return (

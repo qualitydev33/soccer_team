@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { WSTORAGE_KEY } from '../../utils/constants'
-import { utilCheckNull, utilGetWStorage, utilSetWStorage } from '../../utils/js-func'
+import { utilCheckNull, utilGetWStorage, utilJsonClone, utilSetWStorage } from '../../utils/js-func'
 
 export const teamSlice = createSlice({
     name: 'team',
@@ -9,7 +9,7 @@ export const teamSlice = createSlice({
         name: {
             value: 'My Team',
             changed: false
-        }
+        },
     },
     reducers: {
         initTeam: (state, action) => {
@@ -26,8 +26,9 @@ export const teamSlice = createSlice({
             }
         },
         updatePlayer: (state, action) => {
-            let result = Object.assign({}, state.data)
+            let result = utilJsonClone(state.data)
             result[action.payload.id] = action.payload
+            utilSetWStorage(WSTORAGE_KEY.team, result)
             return {
                 ...state,
                 data: JSON.parse(JSON.stringify(result))
@@ -53,7 +54,7 @@ export const teamSlice = createSlice({
                     data: JSON.parse(JSON.stringify(result))
                 }
             }
-        }
+        },
     },
 })
 

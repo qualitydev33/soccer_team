@@ -39,6 +39,10 @@ export const serviceAssignPlayerToFormation = (players, formationData) => {
             playersPos[item.id] = formation.forward[0]
             formation.forward.shift()
         }
+        if (item.position === 'Goalkeeper') {
+            playersPos[item.id] = formation.goalkeeper[0]
+            formation.goalkeeper.shift()
+        }
     })
     return playersPos
 }

@@ -18,3 +18,8 @@ export function utilGetWStorage(key) {
 export function utilJsonClone(val) {
     return JSON.parse(JSON.stringify(val))
 }
+
+export function utilCompareObject(obj1, obj2) {
+    if (JSON.stringify(obj1) === JSON.stringify(obj2)) return true
+    else return false
+}

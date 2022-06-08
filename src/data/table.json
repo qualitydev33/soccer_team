@@ -1,4 +1,3 @@
 {
-    "TABLE_FIELD": ["Player Name", "Jersey Number", "Position", "Height", "Weight", "Nationality", "Appearances", "Minutes Played"],
-    "PLAYER_POSITION": ["Goalkeeper", "Defender", "Midfielder", "Forward"]
+    "TABLE_FIELD": ["Player Name", "Jersey Number", "Position", "Height", "Weight", "Nationality", "Appearances", "Minutes Played"]
 }

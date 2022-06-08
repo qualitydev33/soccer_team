@@ -2,40 +2,50 @@ import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 
-import { PlayerType } from '../../utils/types'
-import CloseIcon from '../Icon/CloseIcon'
-import Button from './Button'
-import Input from './Input'
-import RadioButton from './RadioButton'
-import SelectInput from './SelectInput'
-import tableData from '../../data/table.json'
+import { PlayerType, PLAYER_POSITIONS } from '../../utils/types'
+import {
+    CloseIcon
+} from '../Icon'
+import {
+    Button,
+    Input,
+    RadioButton,
+    SelectInput,
+    LoadingSpinner
+} from './Common'
 import { updatePlayer } from '../../store/team/slice'
+import { utilCompareObject } from '../../utils/js-func'
+
+let originActivePlayer;
 
 const EditModal = ({
     player,
     closeFun,
 }) => {
     const dispatch = useDispatch()
+    const [loading, setLoading] = useState(true)
     const [activePlayer, setActivePlayer] = useState({})
-    const [submitDisabled, setSubmitDisabled] = useState(true)
+    const [disabledSubmit, setDisabledSubmit] = useState(true)
+
     const handleActivePlayer = (obj) => {
+        let compareResult = utilCompareObject(originActivePlayer, {...activePlayer, [obj.name]: obj.value})
+        setDisabledSubmit(compareResult)
         setActivePlayer({...activePlayer, [obj.name]: obj.value})
     }
     const handleSubmit = () => {
-        console.log("activePlayer=", activePlayer)
         dispatch(updatePlayer(activePlayer))
         closeFun()
     }
-    useEffect(() => {
-        if (JSON.stringify(activePlayer) !== JSON.stringify(player)) setSubmitDisabled(false)
-        
-    }, [activePlayer])
+
     useEffect(() => {
         setActivePlayer(player)
+        originActivePlayer = player
+        setLoading(false)
     }, [])
     return (
         <>  
-            <div className="absolute top-0 left-0 w-screen h-screen flex bg-black bg-opacity-60">
+            {loading && <LoadingSpinner />}
+            {!loading && <div className="absolute top-0 left-0 w-screen h-screen flex bg-black bg-opacity-60">
                 <div className="w-auto m-auto max-h-[600px] min-w-[480px] p-6 flex flex-col gap-y-6 bg-c_bg_2 rounded-lg">
                     <div className='flex items-center justify-between'>
                         <h3 className='text-c_text_1 font-semibold'>Edit Player</h3>
@@ -87,7 +97,7 @@ const EditModal = ({
                             label='Position' 
                             defaultVal={player.position}
                             name="position"
-                            options={tableData.PLAYER_POSITION}
+                            options={PLAYER_POSITIONS}
                             clickFun={handleActivePlayer}
                         />
                         <RadioButton 
@@ -101,13 +111,13 @@ const EditModal = ({
                         <Button 
                             type='warn' 
                             title="Edit Player"
-                            disabled={submitDisabled}
+                            disabled={disabledSubmit}
                             clickFun={handleSubmit}
                         />
                     </div>
                     
                 </div>
-            </div>
+            </div>}
         </>
     )
 }
