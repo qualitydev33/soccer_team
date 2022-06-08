@@ -1,16 +1,20 @@
-export function checkNull(val) {
+export function utilCheckNull(val) {
     return val === null || val === undefined || String(val).toLowerCase() === "n/a"
 }
 
-export function arrToObj(arr, key) {
+export function utilArrToObj(arr, key) {
     return arr.reduce((a, b) => ({...a, [b[key]]: b }), {})
 }
 
-export function setWStorage(key, value) {
+export function utilSetWStorage(key, value) {
     window.localStorage.setItem(key, JSON.stringify(value))
 }
-export function getWStorage(key) {
+export function utilGetWStorage(key) {
     let result = window.localStorage.getItem(key)
-    if (!checkNull(result)) return JSON.parse(result)
+    if (!utilCheckNull(result)) return JSON.parse(result)
     else return null
+}
+
+export function utilJsonClone(val) {
+    return JSON.parse(JSON.stringify(val))
 }

@@ -20,3 +20,5 @@ export const PlayerType = PropTypes.shape({
     clean_sheets: PropTypes.number,
     saves: PropTypes.number
 })
+
+export const TeamStatusForEntry = ['NO_DATA', 'NOT_ENOUGH_STARTER', 'TOO_MANY_STARTER']

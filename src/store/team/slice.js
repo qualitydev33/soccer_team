@@ -1,22 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { WSTORAGE_KEY } from '../../utils/constants'
-import { checkNull, getWStorage, setWStorage } from '../../utils/js-func'
+import { utilCheckNull, utilGetWStorage, utilSetWStorage } from '../../utils/js-func'
 
 export const teamSlice = createSlice({
     name: 'team',
     initialState: {
         data: {},
-        name: 'My Team'
+        name: {
+            value: 'My Team',
+            changed: false
+        }
     },
     reducers: {
         initTeam: (state, action) => {
             state.data = action.payload
-            setWStorage(WSTORAGE_KEY.team, action.payload)
+            utilSetWStorage(WSTORAGE_KEY.team, action.payload)
         },
         updateTeamName: (state, action) => {
             return {
                 ...state,
-                name: action.payload
+                name: {
+                    value: action.payload.value,
+                    changed: action.payload.changed
+                }
             }
         },
         updatePlayer: (state, action) => {
@@ -36,8 +42,8 @@ export const teamSlice = createSlice({
             }
         },
         resetTeamFromWStorage: (state) => {
-            let result = getWStorage(WSTORAGE_KEY.team)
-            if (checkNull(result)) return {
+            let result = utilGetWStorage(WSTORAGE_KEY.team)
+            if (utilCheckNull(result)) return {
                 ...state,
                 data: {}
             }

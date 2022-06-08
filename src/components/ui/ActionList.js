@@ -20,9 +20,9 @@ const ActionList = ({
                         {actionBtn}
                     </button>
                     {activeList && <div className='relative'>
-                        <div className="absolute top-0 right-1 z-10 min-w-[237px] bg-[#2D2D2D] box-shadow rounded-lg px-4 pt-4 pb-8 flex flex-col gap-y-6">
+                        <div className="absolute top-0 right-1 z-10 min-w-[237px] bg-c_neutral_2 box-shadow rounded-lg px-4 pt-4 pb-8 flex flex-col gap-y-6">
                             <div className='flex items-center justify-between'>
-                                <h3 className='text-[#F8F8F8] font-semibold'>{title}</h3>
+                                <h3 className='text-c_text_1 font-semibold'>{title}</h3>
                                 <button 
                                     onClick={() => {setActiveList(false)}}>
                                     <CloseIcon />
@@ -33,7 +33,7 @@ const ActionList = ({
                                 return (
                                     <button 
                                         key={`${item.title}-${idx}`} 
-                                        className="flex items-center gap-x-3 text-[#CBCBCB]"
+                                        className="flex items-center gap-x-3 text-c_text_2"
                                         onClick={() => {
                                             setActiveList(false)
                                             action()

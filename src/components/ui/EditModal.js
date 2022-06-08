@@ -35,11 +35,10 @@ const EditModal = ({
     }, [])
     return (
         <>  
-            {/* <span className='absolute z-50 top-[100px] left-[100px] text-green-500 font-semibold'>{JSON.stringify(activePlayer)}</span> */}
             <div className="absolute top-0 left-0 w-screen h-screen flex bg-black bg-opacity-60">
-                <div className="w-auto m-auto max-h-[600px] min-w-[480px] p-6 flex flex-col gap-y-6 bg-[#383838] rounded-lg">
+                <div className="w-auto m-auto max-h-[600px] min-w-[480px] p-6 flex flex-col gap-y-6 bg-c_bg_2 rounded-lg">
                     <div className='flex items-center justify-between'>
-                        <h3 className='text-[#F8F8F8] font-semibold'>Edit Player</h3>
+                        <h3 className='text-c_text_1 font-semibold'>Edit Player</h3>
                         <button onClick={closeFun}>
                             <CloseIcon />
                         </button>

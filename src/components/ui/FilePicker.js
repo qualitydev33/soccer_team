@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import PapaParse from 'papaparse'
 import {v4 as UUID_v4} from 'uuid'
-import { arrToObj } from '../../utils/js-func';
+import { utilArrToObj } from '../../utils/js-func';
 
 function dataCheck(item) {
     // if (item.saves === "N/A") item.saves = null
@@ -28,7 +28,7 @@ function csvToArray(str) {
         }),
     )
     var filteredData = csvData.data.map(dataCheck) 
-    csvData.data = arrToObj(filteredData, 'id')
+    csvData.data = utilArrToObj(filteredData, 'id')
     return csvData
      
 }
@@ -55,14 +55,14 @@ const FilePicker = ({
         <div className="relative max-w-[300px]">
             <input 
                 type="text" 
-                className={`h-11 w-full py-3 pl-4 pr-28 bg-transparent border rounded-lg placeholder-[#999999] text-sm text-[#F8F8F8] ${filePath === null ? 'border-[#D23131]' : 'border-[#494949]'}`} 
+                className={`h-11 w-full py-3 pl-4 pr-28 bg-transparent border rounded-lg placeholder-c_text_3 text-sm text-c_text_1 ${filePath === null ? 'border-c_primary_red' : 'border-c_border'}`} 
                 placeholder={placeholder}
                 value={filePath === null ? '' : filePath}
                 readOnly
             />
             <label 
                 htmlFor="file_picker" 
-                className={`cursor-pointer absolute top-0 right-0 h-11 py-3 px-4 bg-transparent border rounded-lg text-sm text-[#CBCBCB] ${filePath === null ? 'border-[#D23131]' : 'border-[#494949]'}`}
+                className={`cursor-pointer absolute top-0 right-0 h-11 py-3 px-4 bg-transparent border rounded-lg text-sm text-c_text_2 ${filePath === null ? 'border-c_primary_red' : 'border-c_border'}`}
                 
             >Select File</label>
             <input 

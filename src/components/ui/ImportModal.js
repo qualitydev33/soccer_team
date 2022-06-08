@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import CloseIcon from "../Icon/CloseIcon";
 import Button from './Button';
 import FilePicker from "./FilePicker";
-import { initTeam, resetTeam } from "../../store/team/slice"
 
 
 const ImportModal = ({
@@ -14,7 +13,6 @@ const ImportModal = ({
 }) => {
     const [summary, setSummary] = useState(null)
     const [teamData, setTeamData] = useState({})
-    const dispatch = useDispatch()
 
     const handleDataFromFilePicker = (fileData) => {
         setTeamData(fileData.data)
@@ -34,14 +32,14 @@ const ImportModal = ({
     }
     return (
         <div className="absolute top-0 left-0 w-screen h-screen flex bg-black bg-opacity-60">
-            <div className="w-full m-auto max-w-[800px] max-h-[600px] px-6 pt-[18px] pb-6 flex flex-col bg-[#383838]">
+            <div className="w-full m-auto max-w-[800px] max-h-[600px] px-6 pt-[18px] pb-6 flex flex-col bg-c_bg_2">
                 <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-[#F8F8F8]">Importer</h3>
+                    <h3 className="font-semibold text-c_text_1">Importer</h3>
                     <button onClick={cancelFunc}>
                         <CloseIcon />
                     </button>
                 </div>
-                <div className="h-px w-full bg-[#494949] mt-[15px]"></div>
+                <div className="h-px w-full bg-c_border mt-[15px]"></div>
                 <div className="mt-6">
                     <h5 className="mb-3 text-white leading-normal font-medium">Roster File</h5>
                     <FilePicker 
@@ -55,7 +53,7 @@ const ImportModal = ({
                     <div className={`flex items-center justify-between`}>
                         {Object.keys(summary).map((item, idx) => {
                             return (
-                                <div key={idx} className="text-[#CBCBCB]">
+                                <div key={idx} className="text-c_text_2">
                                     <h5 className='text-sm font-normal'>{item}</h5>
                                     <h4 className='font-semibold'>{summary[item]}</h4>
                                 </div>

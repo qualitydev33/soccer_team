@@ -17,13 +17,13 @@ const SearchInput = ({
             </div>
             <input
                 type='text'
-                className="h-11 w-full pl-10 pr-14 py-4 text-xs rounded-lg bg-transparent text-[#F8F8F8] border-[#494949] border placeholder-[#999999]" placeholder={placeholder} value={searchKey}
+                className="h-11 w-full pl-10 pr-14 py-4 text-xs rounded-lg bg-transparent text-c_text_1 border-c_border border placeholder-c_text_3" placeholder={placeholder} value={searchKey}
                 onChange={(evt) => {setSearchKey(evt.target.value)}}
             />
             {
                 searchKey.length !== 0 && !searched && 
                 <button 
-                    className="absolute top-1/2 right-3 -translate-y-1/2 text-xs text-[#FEA013]"
+                    className="absolute top-1/2 right-3 -translate-y-1/2 text-xs text-c_primary_yellow"
                     onClick={() => {
                         setSearched(true); 
                         searchFunc(String(searchKey).toLowerCase())}
@@ -33,7 +33,7 @@ const SearchInput = ({
             {
                 searched && 
                 <button 
-                    className="absolute top-1/2 right-3 -translate-y-1/2 text-xs text-[#FEA013]"
+                    className="absolute top-1/2 right-3 -translate-y-1/2 text-xs text-c_primary_yellow"
                     onClick={() => {
                         setSearched(false);
                         setSearchKey('')

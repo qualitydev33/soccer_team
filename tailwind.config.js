@@ -4,7 +4,7 @@ module.exports = {
         './src/**/*.{js,jsx,ts,tsx}',
     ],
     theme: {
-        extends: {
+        extend: {
             colors: {
                 'c_primary_yellow': '#FEA013',
                 'c_primary_brown': '#BA4A0C',
@@ -15,9 +15,22 @@ module.exports = {
                 'c_text_2': '#CBCBCB',
                 'c_text_3': '#999999',
                 'c_text_4': '#707070',
+                'c_text_5': '#FFFFFF',
                 'c_border': '#494949',
                 'c_bg_1': '#111111',
-                'c_bg_2': '#383838'
+                'c_bg_2': '#383838',
+
+            },
+            spacing: {
+                '3%': '3%',
+                '10%': '10%',
+                '15%': '15%',
+                '23%': '23%',
+                '24%': '24%',
+                '27%': '27%',
+                '30%': '30%',
+                '75%': '75%',
+                '77%': '77%'
             }
         }
     }

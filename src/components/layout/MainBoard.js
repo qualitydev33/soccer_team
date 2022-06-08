@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom"
 import PropTypes from 'prop-types';
 import RosterDetail from "../../pages/RosterDetail"
 import RosterFormation from "../../pages/RosterFormation"
@@ -10,6 +10,7 @@ const MainBoard = ({
         <>
             <div className={cn}>
                 <Routes>
+                    <Route path="*" element={<Navigate to="/detail" replace />} />
                     <Route 
                         path="/detail" 
                         exact 

@@ -12,13 +12,13 @@ const Button = ({
         let result = 'primary'
         switch (str) {
             case "primary":
-                result = "bg-transparent border border-[#494949] text-[#CBCBCB]"
+                result = "bg-transparent border border-c_border text-c_text_2"
                 break;
             case "warn":
-                result = "bg-[#FEA013] text-[#F8F8F8]"
+                result = "bg-c_primary_yellow text-c_text_1"
                 break;
             case "danger": 
-                result = "bg-[#D23131] text-[#F8F8F8]"
+                result = "bg-c_primary_red text-c_text_1"
             default:
                 break;
         }
@@ -27,7 +27,7 @@ const Button = ({
     return (
         <>
             <button 
-                className={`${disabled ? 'bg-transparent text-[#707070]' : handleBtnType(type)} px-5 rounded-lg h-11 flex items-center justify-center text-sm leading-normal font-medium`}
+                className={`${disabled ? 'bg-transparent text-c_text_4' : handleBtnType(type)} px-5 rounded-lg h-11 flex items-center justify-center text-sm leading-normal font-medium`}
                 disabled={disabled}
                 onClick={() => {clickFun()}}
             >{title}</button>

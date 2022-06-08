@@ -29,10 +29,10 @@ const SelectInput = ({
     }, [])
     return <ClickOutside active={activeSelect} onClick={() => setActiveSelect(false)}>
                 <div className="flex flex-col gap-y-2">
-                    <h5 className="text-[#FFFFFF] font-medium">{label}</h5>
+                    <h5 className="text-c_text_5 font-medium">{label}</h5>
                     <div className="relative">
                         <button 
-                            className="flex justify-start items-center h-11 w-full px-2 text-xs rounded-lg bg-transparent text-[#F8F8F8] border-[#494949] border"
+                            className="flex justify-start items-center h-11 w-full px-2 text-xs rounded-lg bg-transparent text-c_text_1 border-c_border border"
                             onClick={() => setActiveSelect(!activeSelect)}
                         >{activeValue}</button>
                         <span className="absolute top-1/2 right-2 -translate-x-1/2">
@@ -44,10 +44,10 @@ const SelectInput = ({
                                 return(
                                     <li 
                                         key={`option_${idx}`} 
-                                        className={`p-2 cursor-pointer bg-[#383838]`}
+                                        className={`p-2 cursor-pointer bg-c_bg_2`}
                                         onClick={() => handleSelect(item)}
                                     >
-                                        <h5 className="text-[#F8F8F8]">{item}</h5>
+                                        <h5 className="text-c_text_1">{item}</h5>
                                     </li>
                                 )
                             })}

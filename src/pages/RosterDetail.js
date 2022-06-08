@@ -13,7 +13,7 @@ import SearchInput from "../components/ui/SearchInput"
 import TeamNameEditor from "../components/ui/TeamNameEditor"
 import TableData from "../data/table.json"
 import { resetTeamFromWStorage, initTeam, updateTeamName } from "../store/team/slice"
-import { arrToObj } from "../utils/js-func"
+import { utilArrToObj } from "../utils/js-func"
 
 function convertTableRow(rowData, field) {
     let result;
@@ -43,8 +43,8 @@ const RosterDetail = ({cn}) => {
     const [activeDeleteModal, setActiveDeleteModal] = useState(false)
     const [activeEditModal, setActiveEditModal] = useState(false)
 
-    const handleTeamName = (str) => {
-        dispatch(updateTeamName(str))
+    const handleTeamName = (obj) => {
+        dispatch(updateTeamName(obj))
     }
     const handleEditModal = (player) => {
         setActiveEditModal(true)
@@ -62,7 +62,7 @@ const RosterDetail = ({cn}) => {
     }
     const handleSearch = (searchKey) => {
         let filterResult = Object.values(searchPlayers).filter(item => String(item.player_name).toLowerCase().includes(searchKey))
-        let searchResult = arrToObj(filterResult, 'id')
+        let searchResult = utilArrToObj(filterResult, 'id')
         setSearchPlayers(searchResult)
     }
     const handleResetSearch = () => {
@@ -73,11 +73,11 @@ const RosterDetail = ({cn}) => {
         setSearchPlayers(teamStore)
     }, [teamStore])
 
-    // useEffect(() => {
-    //     dispatch(resetTeamFromWStorage())
-    //     let teamData = store.getState().team.data
-    //     setSearchPlayers(teamData)
-    // }, [])
+    useEffect(() => {
+        dispatch(resetTeamFromWStorage())
+        let teamData = store.getState().team.data
+        setSearchPlayers(teamData)
+    }, [])
     return (
         <>
             <div className={cn}>
@@ -101,12 +101,12 @@ const RosterDetail = ({cn}) => {
                     </div>
                 </div>
 
-                <div className="relative bg-[#2D2D2D] w-full h-full px-5 pt-[17px] pb-[13px] rounded-lg flex flex-col flex-1">
+                <div className="relative bg-c_neutral_2 w-full h-full px-5 pt-[17px] pb-[13px] rounded-lg flex flex-col flex-1">
                     <div className="flex justify-between items-center">
                         {TableData.TABLE_FIELD.map((item, idx) => {
                             return(
                                 <div key={idx} className="flex-1">
-                                    <h6 className={`font-medium text-[#CBCBCB] ${idx === 0 ? 'w-[196px]' : ''}`}>{item}</h6>
+                                    <h6 className={`font-medium text-c_text_2 ${idx === 0 ? 'w-[196px]' : ''}`}>{item}</h6>
                                 </div>
                             )
                         })}
@@ -114,9 +114,9 @@ const RosterDetail = ({cn}) => {
                     </div>
 
                     {Object.values(teamStore).length === 0 && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col text-sm">
-                        <h5 className="text-[#CBCBCB]">You do not have any players on the roster</h5>
+                        <h5 className="text-c_text_2">You do not have any players on the roster</h5>
                         <button 
-                            className="text-[#FEA013] mt-2"
+                            className="text-c_primary_yellow mt-2"
                             onClick={() => {handleShowImportModal()}}
                         >Import Team</button>
                     </div>}
@@ -129,10 +129,10 @@ const RosterDetail = ({cn}) => {
                                         return (
                                             <div key={`row_${sub_idx}`} className="flex-1">
                                                 {sub_idx === 0 && <div className="flex items-center gap-x-2 w-[196px]">
-                                                    <img className="rounded-full border border-[#CBCBCB]" src={item.flag_image} alt={`flag-img`} width={24} height={24} />
-                                                    <h5 className="font-medium text-[#CBCBCB]">{item.player_name}</h5>
+                                                    <img className="rounded-full border border-c_text_2" src={item.flag_image} alt={`flag-img`} width={24} height={24} />
+                                                    <h5 className="font-medium text-c_text_2">{item.player_name}</h5>
                                                 </div>}
-                                                {sub_idx !== 0 && <h5 className="text-left text-sm font-medium text-[#CBCBCB]">{convertTableRow(item, sub_item.toLowerCase().replaceAll(" ", "_"))}</h5>}
+                                                {sub_idx !== 0 && <h5 className="text-left text-sm font-medium text-c_text_2">{convertTableRow(item, sub_item.toLowerCase().replaceAll(" ", "_"))}</h5>}
                                                 
                                             </div>
                                         )
