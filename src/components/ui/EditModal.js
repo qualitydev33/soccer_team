@@ -5,14 +5,14 @@ import { useDispatch } from 'react-redux'
 import { PlayerType, PLAYER_POSITIONS } from '../../utils/types'
 import {
     CloseIcon
-} from '../Icon'
+} from '../Icon/Index'
 import {
     Button,
     Input,
     RadioButton,
     SelectInput,
     LoadingSpinner
-} from './Common'
+} from './Common/Index'
 import { updatePlayer } from '../../store/team/slice'
 import { utilCompareObject } from '../../utils/js-func'
 

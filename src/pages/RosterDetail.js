@@ -5,18 +5,18 @@ import {
     Button,
     LoadingSpinner,
     SearchInput
-} from '../components/ui/Common'
+} from '../components/ui/Common/Index'
 import {
     DeleteIcon,
     PenIcon,
     ThreeDotIcon,
-} from '../components/Icon'
+} from '../components/Icon/Index'
 import {
     DeleteModal,
     EditModal,
     ImportModal,
     TeamNameEditor
-} from '../components/ui'
+} from '../components/ui/Index'
 import TableData from "../data/table.json"
 import { initTeam, updateTeamName } from "../store/team/slice"
 import { utilArrToObj } from "../utils/js-func"

@@ -3,7 +3,7 @@ import { FORMATION_MODAL_CONTENT } from '../../utils/constants';
 import { TeamStatusForEntry } from '../../utils/types';
 import {
     TriangleWarnIcon
-} from '../Icon'
+} from '../Icon/Index'
 
 
 function checkModalType(type) {

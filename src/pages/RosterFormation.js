@@ -6,10 +6,10 @@ import {
     Pitch,
     PlayerCard,
     FormationModal,
-} from '../components/ui'
+} from '../components/ui/Index'
 import {
     LoadingSpinner
-} from '../components/ui/Common'
+} from '../components/ui/Common/Index'
 import { updateTeamName } from '../store/team/slice'
 import { FORMATION_SYSTEM } from '../utils/constants'
 import { serviceAssignPlayerToFormation, serviceValidateStartPlayer } from '../service/service-func'

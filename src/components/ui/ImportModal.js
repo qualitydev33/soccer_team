@@ -5,11 +5,11 @@ import { utilCheckNull } from '../../utils/js-func';
 
 import {
     CloseIcon
-} from "../Icon";
+} from "../Icon/Index";
 import {
     Button,
     FilePicker
-} from './Common';
+} from './Common/Index';
 
 const ImportModal = ({
     cancelFunc,

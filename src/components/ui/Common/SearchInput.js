@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
     SearchIcon,
     CloseIcon
-} from "../../Icon"
+} from "../../Icon/Index"
 
 
 const SearchInput = ({

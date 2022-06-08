@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ClickOutside from "../ClickOutSide/ClickOutside"
 import {
     ChevronDownIcon
-} from "../../Icon"
+} from "../../Icon/Index"
 
 
 

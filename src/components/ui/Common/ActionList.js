@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
 import {
     CloseIcon
-} from '../../Icon';
+} from '../../Icon/Index';
 import ClickOutside from '../ClickOutSide/ClickOutside';
 
 

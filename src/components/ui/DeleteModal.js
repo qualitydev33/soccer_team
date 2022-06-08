@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux'
 import { deletePlayerById } from '../../store/team/slice'
 import {
     CloseIcon,
-} from '../Icon'
+} from '../Icon/Index'
 import {
     Button
-} from "./Common";
+} from "./Common/Index";
 
 
 const DeleteModal = ({

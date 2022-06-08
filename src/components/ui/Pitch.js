@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { PlayerType } from '../../utils/types'
 import {
     PlayerPosition
-} from '../ui'
+} from '../ui/Index'
 const Pitch = ({
     cn,
     startPlayers,
