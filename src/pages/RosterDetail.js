@@ -17,9 +17,9 @@ import {
     ImportModal,
     TeamNameEditor
 } from 'components/ui/Index'
-import TableData from "../data/table.json"
 import { initTeam, updateTeamName } from "store/team/slice"
 import { utilArrToObj } from "utils/js-func"
+import { TABLE_FIELD } from "../utils/types"
 
 function convertTableRow(rowData, field) {
     let result;
@@ -114,7 +114,7 @@ const RosterDetail = ({cn}) => {
 
                 <div className="relative bg-c_neutral_2 w-full h-full px-5 pt-[17px] pb-[13px] rounded-lg flex flex-col flex-1">
                     <div className="flex justify-between items-center">
-                        {TableData.TABLE_FIELD.map((item, idx) => {
+                        {TABLE_FIELD.map((item, idx) => {
                             return(
                                 <div key={idx} className="flex-1">
                                     <h6 className={`font-medium text-c_text_2 ${idx === 0 ? 'w-[196px]' : ''}`}>{item}</h6>
@@ -140,7 +140,7 @@ const RosterDetail = ({cn}) => {
                                 {Object.values(searchPlayers).map((item, idx) => {
                                     return (
                                         <div key={idx} className="flex items-center justify-between">
-                                            {TableData.TABLE_FIELD.map((sub_item, sub_idx) => {
+                                            {TABLE_FIELD.map((sub_item, sub_idx) => {
                                                 return (
                                                     <div key={`row_${sub_idx}`} className="flex-1">
                                                         {sub_idx === 0 && <div className="flex items-center gap-x-2 w-[196px]">

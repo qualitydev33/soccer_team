@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
 import { PlayerType } from 'utils/types'
-import {
-    PlayerPosition
-} from 'components/ui/Index'
+import { PlayerPosition } from 'components/ui/Index'
 
 
 const Pitch = ({

@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { deletePlayerById } from 'store/team/slice'
-import {
-    CloseIcon,
-} from 'components/Icon/Index'
-import {
-    Button
-} from "components/ui/Common/Index";
+import { CloseIcon } from 'components/Icon/Index'
+import { Button } from "components/ui/Common/Index";
 
 
 const DeleteModal = ({

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+export const TABLE_FIELD = ["Player Name", "Jersey Number", "Position", "Height", "Weight", "Nationality", "Appearances", "Minutes Played"]
 export const TeamStatusForEntry = ['NO_DATA', 'NOT_ENOUGH_STARTER', 'TOO_MANY_STARTER']
 export const PLAYER_POSITIONS = ["Goalkeeper", "Defender", "Midfielder", "Forward"]
 export const NATIONALITY = ["Italian", "Portuguese", "Dutch", "Costa Rican", "French", "Spanish", "Morocco", "Brazilian", "Argentinian"]

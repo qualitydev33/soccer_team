@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState, useEffect } from 'react'
-import {
-    CheckIcon,
-    PenIcon
-} from 'components/Icon/Index'
+import { CheckIcon, PenIcon } from 'components/Icon/Index'
 
 
 const TeamNameEditor = ({

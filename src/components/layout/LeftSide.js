@@ -13,7 +13,9 @@ const LeftSide = ({
     return (
         <>
             <div className=" bg-c_bg_1 w-[60px] h-screen flex flex-col pt-5 px-[10px]">
-                <Logo cn="mx-auto" />
+                <a href="/">
+                    <Logo cn="mx-auto" />
+                </a>
                 <div className="mt-12 flex flex-col gap-y-11">
                     {routeList.map((item, idx) => {
                         return (

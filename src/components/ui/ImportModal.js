@@ -3,13 +3,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { utilCheckNull } from 'utils/js-func';
 
-import {
-    CloseIcon
-} from "components/Icon/Index";
-import {
-    Button,
-    FilePicker
-} from 'components/ui/Common/Index';
+import { CloseIcon } from "components/Icon/Index";
+import { Button, FilePicker } from 'components/ui/Common/Index';
 
 const ImportModal = ({
     cancelFunc,
