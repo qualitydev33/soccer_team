@@ -2,12 +2,14 @@ import "./tailwind.css"
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import HugIcon from "./components/Icon/HugIcon";
-import TeamIcon from "./components/Icon/TeamIcon";
-import LeftSide from "./components/layout/LeftSide"
-import MainBoard from "./components/layout/MainBoard";
-import LoadingSpinner from './components/ui/Common/LoadSpinner';
-import { resetTeamFromWStorage } from "./store/team/slice"
+import {
+  HugIcon,
+  TeamIcon
+} from "components/Icon/Index";
+import LeftSide from "components/layout/LeftSide"
+import MainBoard from "components/layout/MainBoard";
+import { LoadingSpinner } from 'components/ui/Common/Index';
+import { resetTeamFromWStorage } from "store/team/slice"
 
 
 const App = () => {
