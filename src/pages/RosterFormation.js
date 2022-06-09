@@ -6,14 +6,14 @@ import {
     Pitch,
     PlayerCard,
     FormationModal,
-} from '../components/ui/Index'
+} from 'components/ui/Index'
 import {
     LoadingSpinner
-} from '../components/ui/Common/Index'
-import { updateTeamName } from '../store/team/slice'
-import { FORMATION_SYSTEM } from '../utils/constants'
-import { utilArrToObj, utilJsonClone } from '../utils/js-func'
-import { TeamStatusForEntry } from '../utils/types'
+} from 'components/ui/Common/Index'
+import { updateTeamName } from 'store/team/slice'
+import { FORMATION_SYSTEM } from 'utils/constants'
+import { utilArrToObj, utilJsonClone } from 'utils/js-func'
+import { TeamStatusForEntry } from 'utils/types'
 
 
 function serviceValidateStartPlayer(playersPos) {
@@ -117,7 +117,7 @@ const RosterFormation = ({
                         <div className="absolute inset-0 bg-c_neutral_2 w-full h-full p-8 rounded-lg flex flex-col flex-1">
                             <div className='w-full h-full flex gap-x-8'>
                                 <Pitch 
-                                    cn="relative flex-1"
+                                    cn="relative flex-1 bg-no-repeat bg-center bg-contain"
                                     startPlayers={startPlayers}
                                     playersPos={playersPos}
                                     activePlayer={activePlayer}

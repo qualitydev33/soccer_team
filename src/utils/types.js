@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 export const TeamStatusForEntry = ['NO_DATA', 'NOT_ENOUGH_STARTER', 'TOO_MANY_STARTER']
 export const PLAYER_POSITIONS = ["Goalkeeper", "Defender", "Midfielder", "Forward"]
+export const NATIONALITY = ["Italian", "Portuguese", "Dutch", "Costa Rican", "French", "Spanish", "Morocco", "Brazilian", "Argentinian"]
 
 export const PlayerType = PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

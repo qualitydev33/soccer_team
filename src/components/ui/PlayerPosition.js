@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { PlayerType } from '../../utils/types'
+import { PlayerType } from 'utils/types'
 const PlayerPosition = ({
     player,
     activePlayer,

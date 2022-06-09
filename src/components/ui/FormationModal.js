@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
-import { FORMATION_MODAL_CONTENT } from '../../utils/constants';
-import { TeamStatusForEntry } from '../../utils/types';
+import { FORMATION_MODAL_CONTENT } from 'utils/constants';
+import { TeamStatusForEntry } from 'utils/types';
 import {
     TriangleWarnIcon
-} from '../Icon/Index'
+} from 'components/Icon/Index'
 
 
 function checkModalType(type) {

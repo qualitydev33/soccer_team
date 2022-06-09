@@ -5,21 +5,21 @@ import {
     Button,
     LoadingSpinner,
     SearchInput
-} from '../components/ui/Common/Index'
+} from 'components/ui/Common/Index'
 import {
     DeleteIcon,
     PenIcon,
     ThreeDotIcon,
-} from '../components/Icon/Index'
+} from 'components/Icon/Index'
 import {
     DeleteModal,
     EditModal,
     ImportModal,
     TeamNameEditor
-} from '../components/ui/Index'
+} from 'components/ui/Index'
 import TableData from "../data/table.json"
-import { initTeam, updateTeamName } from "../store/team/slice"
-import { utilArrToObj } from "../utils/js-func"
+import { initTeam, updateTeamName } from "store/team/slice"
+import { utilArrToObj } from "utils/js-func"
 
 function convertTableRow(rowData, field) {
     let result;

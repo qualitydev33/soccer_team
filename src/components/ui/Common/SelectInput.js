@@ -13,6 +13,7 @@ const SelectInput = ({
     name,
     options,
     defaultVal,
+    maxHeight = 500,
     clickFun
 }) => {
     const [activeSelect, setActiveSelect] = useState(false)
@@ -40,7 +41,7 @@ const SelectInput = ({
                             <ChevronDownIcon />
                         </span>
 
-                        {activeSelect && <ul className="absolute top-12 w-full box-shadow rounded-lg">
+                        {activeSelect && <ul className={`absolute top-14 z-10 w-full box-shadow rounded-lg max-h-${maxHeight}px overflow-auto`}>
                             {options.map((item, idx) => {
                                 return(
                                     <li 
@@ -65,6 +66,7 @@ SelectInput.prototype = {
     name: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     defaultVal: PropTypes.string,
+    maxHeight: PropTypes.number,
     clickFun: PropTypes.func
 }
 

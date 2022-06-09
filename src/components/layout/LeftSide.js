@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Logo} from "../Icon/Index"
+import {Logo} from "components/Icon/Index"
 
 const LeftSide = ({
     routeList

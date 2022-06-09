@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import {
     CheckIcon,
     PenIcon
-} from '../Icon/Index'
+} from 'components/Icon/Index'
 
 
 const TeamNameEditor = ({

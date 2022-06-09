@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom"
 import PropTypes from 'prop-types';
-import RosterDetail from "../../pages/RosterDetail"
-import RosterFormation from "../../pages/RosterFormation"
+import RosterDetail from "pages/RosterDetail"
+import RosterFormation from "pages/RosterFormation"
 
 const MainBoard = ({
     cn

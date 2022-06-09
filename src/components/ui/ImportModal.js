@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { utilCheckNull, utilIsNullInArrayOfObj } from '../../utils/js-func';
+import { utilCheckNull } from 'utils/js-func';
 
 import {
     CloseIcon
-} from "../Icon/Index";
+} from "components/Icon/Index";
 import {
     Button,
     FilePicker
-} from './Common/Index';
+} from 'components/ui/Common/Index';
 
 const ImportModal = ({
     cancelFunc,

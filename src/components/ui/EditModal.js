@@ -2,19 +2,19 @@ import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 
-import { PlayerType, PLAYER_POSITIONS } from '../../utils/types'
+import { NATIONALITY, PlayerType, PLAYER_POSITIONS } from 'utils/types'
 import {
     CloseIcon
-} from '../Icon/Index'
+} from 'components/Icon/Index'
 import {
     Button,
     Input,
     RadioButton,
     SelectInput,
     LoadingSpinner
-} from './Common/Index'
-import { updatePlayer } from '../../store/team/slice'
-import { utilCompareObject } from '../../utils/js-func'
+} from 'components/ui/Common/Index'
+import { updatePlayer } from 'store/team/slice'
+import { utilCompareObject } from 'utils/js-func'
 
 let originActivePlayer;
 
@@ -86,12 +86,12 @@ const EditModal = ({
                                 changeFun={handleActivePlayer}
                             />
                         </div>
-                        <Input 
-                            type="text"
-                            label="Nationality" 
+                        <SelectInput 
+                            label='Nationality' 
+                            defaultVal={player.nationality}
                             name="nationality"
-                            defaultValue={activePlayer.nationality}
-                            changeFun={handleActivePlayer}
+                            options={NATIONALITY}
+                            clickFun={handleActivePlayer}
                         />
                         <SelectInput 
                             label='Position' 

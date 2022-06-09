@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { WSTORAGE_KEY } from '../../utils/constants'
+import { WSTORAGE_KEY } from 'utils/constants'
 import { utilCheckNull, utilGetWStorage, utilJsonClone, utilSetWStorage } from '../../utils/js-func'
 
 export const teamSlice = createSlice({

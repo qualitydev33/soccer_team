@@ -54,6 +54,13 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '.scss', '.css'],
         modules: ['node_modules'],
+        alias: {
+            components: path.resolve(__dirname, 'src/components'),
+            pages: path.resolve(__dirname, 'src/pages'),
+            assets: path.resolve(__dirname, 'src/assets'),
+            store: path.resolve(__dirname, 'src/store'),
+            utils: path.resolve(__dirname, 'src/utils'),
+        },
     },
 
     module: {
