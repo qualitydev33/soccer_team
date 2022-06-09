@@ -13,7 +13,17 @@ const ActionList = ({
 }) => {
     const [activeList, setActiveList] = useState(false)
     const [isUp, setIsUp] = useState(false)
-    const actionListRef = useRef(null)
+    const actionBtnRef = useRef(null)
+    const handleActionList = () => {
+        const bodyHeight = document.querySelector('body').getBoundingClientRect().bottom
+        const actionBtnRefPosY = actionBtnRef.current.getBoundingClientRect().bottom
+        if (actionBtnRefPosY > bodyHeight - 230) {
+            setIsUp(true)
+        }else {
+            setIsUp(false)
+        }
+        setActiveList(true)
+    }
     return (
         <>
             <ClickOutside 
@@ -21,17 +31,20 @@ const ActionList = ({
                 onClick={() => setActiveList(false)}
             >
                 <div>
-                    <button 
-                        onClick={() => {setActiveList(true)}}>
+                    <button
+                        ref={actionBtnRef}
+                        onClick={() => {handleActionList()}}>
                         {actionBtn}
                     </button>
                     {activeList && 
-                        <div className='relative' ref={actionListRef}>
-                            <div className={`${isUp ? 'bottom-7' : 'top-0'} absolute  right-1 z-10 min-w-[237px] bg-c_neutral_2 box-shadow rounded-lg px-4 pt-4 pb-8 flex flex-col gap-y-6`}>
+                        <div className='relative'>
+                            <div 
+                                className={`${isUp ? 'bottom-7' : 'top-0'} absolute  right-1 z-10 min-w-[237px] bg-c_neutral_2 box-shadow rounded-lg px-4 pt-4 pb-8 flex flex-col gap-y-6`}
+                            >
                                 <div className='flex items-center justify-between'>
                                     <h3 className='text-c_text_1 font-semibold'>{title}</h3>
                                     <button 
-                                        onClick={() => {setActiveList(false); console.log("actionListRef=", actionListRef.current)}}>
+                                        onClick={() => {setActiveList(false)}}>
                                         <CloseIcon />
                                     </button>
                                 </div>
