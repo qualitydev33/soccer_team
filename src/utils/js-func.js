@@ -23,3 +23,14 @@ export function utilCompareObject(obj1, obj2) {
     if (JSON.stringify(obj1) === JSON.stringify(obj2)) return true
     else return false
 }
+
+export function utilIsNullInArrayOfObj(arr, keyArr) {
+    const hasNull = (ele) => {
+        let result = false
+        keyArr.map(item => {
+            if (ele[item] === null) { result = true }
+        })
+        return result
+    }
+    return arr.some(hasNull)
+}

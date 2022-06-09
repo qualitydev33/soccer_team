@@ -18,17 +18,17 @@ const PlayerCard = ({
                     <div className="flex items-center gap-x-8">
                         <div className="flex flex-col gap-y-2">
                             <h6 className="text-c_text_2 font-normal">Height</h6>
-                            <h5 className="text-c_text_1 font-medium">{player.height / 100} m</h5>
+                            <h5 className="text_overflow_one_line text-c_text_1 font-medium">{player.height / 100} m</h5>
                         </div>
                         <div className="flex flex-col gap-y-2">
                             <h6 className="text-c_text_2 font-normal">Weight</h6>
-                            <h5 className="text-c_text_1 font-medium">{player.weight} kg</h5>
+                            <h5 className="text_overflow_one_line text-c_text_1 font-medium">{player.weight} kg</h5>
                         </div>
                         <div className="flex flex-col gap-y-2">
                             <h6 className="text-c_text_2 font-normal">Nationality</h6>
                             <div className="flex items-center gap-x-2">
                                 <img className="w-4 h-4 rounded-full border border-c_text_2" src={player.flag_image} alt="flag-img" />
-                                <h5 className="text-c_text_1 font-medium">{player.nationality}</h5>
+                                <h5 className="text_overflow_one_line text-c_text_1 font-medium">{player.nationality}</h5>
                             </div>
                             
                         </div>
