@@ -44,7 +44,6 @@ const ImportModal = ({
         }
     }
     useEffect(() => {
-        console.log("summary=", summary)
         if (!utilCheckNull(summary)) setDisableSubmit(false)
         else setDisableSubmit(true)
     }, [summary])

@@ -76,9 +76,9 @@ const FilePicker = ({
                 />
             </div>
             {!isInValid && <h5 className='text-c_text_3 font-normal mt-2'>File must be in .csv format</h5>}
-            {isInValid && <div>
-                <h5 className='text-c_primary_red font-normal mt-2'>Error</h5>
-                <h5 className='text-c_text_3 font-normal mt-2'>Your sheet is missing data. Please ensure all cells are filled out.</h5>
+            {isInValid && <div className='flex flex-col gap-y-2 mt-2'>
+                <h5 className='text-c_primary_red font-normal'>Error</h5>
+                <h5 className='text-c_text_3 font-normal'>Your sheet is missing data. Please ensure all cells are filled out.</h5>
             </div>}
         </>
     )
