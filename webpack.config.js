@@ -29,7 +29,6 @@ const path = require("path"),
     // https://webpack.js.org/plugins/html-webpack-plugin/
     HtmlWebPackPlugin = require('html-webpack-plugin')
 
-const packageFolder = path.resolve(__dirname, 'build')
 const isDevelopment = process.env.NODE_ENV !== "production"
 
 module.exports = {
@@ -45,10 +44,11 @@ module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"),
 
     output: {
-        path: packageFolder,
+        path: path.resolve(__dirname, 'build'),
         sourceMapFilename: '[file].map',
         filename: `assets/js/[name].min.js`,
-        publicPath: '/'
+        // publicPath: '/',
+        clean: true
     },
 
     resolve: {
@@ -135,12 +135,18 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                loader: 'file-loader',
+                // use: {
+                //     loader: 'url-loader',
+                //     options: {
+                //         name: '[name].[ext]'
+                //     }
+
+                // },
                 options: {
                     name: 'assets/img/[name].[ext]',
-                    // outputPath: "images",
                     esModule: false,
                 },
+                loader: 'file-loader'
             },
             {
                 test: /\.(ttf|eot|otf|woff)$/,
@@ -247,7 +253,7 @@ module.exports = {
 
     performance: {
         hints: false,
-        maxEntrypointSize: 512000,
-        maxAssetSize: 512000
+        // maxEntrypointSize: 512000,
+        // maxAssetSize: 512000
     }
 }

@@ -9,6 +9,10 @@
     mask-image: linear-gradient(rgba(34, 34, 34, 1), rgba(34, 34, 34, 0.38), rgba(34, 34, 34, 0));
 }
 
+.player-pitch {
+    background-image: url('./assets/img/pitch.png');
+}
+
 .text_overflow_one_line {
     white-space: nowrap;
     text-overflow: ellipsis;
