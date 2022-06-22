@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-    TeamNameEditor,
     Pitch,
     PlayerCard,
     FormationModal,
@@ -10,7 +9,6 @@ import {
 import {
     LoadingSpinner
 } from 'components/ui/Common/Index'
-import { updateTeamName } from 'store/team/slice'
 import { FORMATION_SYSTEM } from 'utils/constants'
 import { utilArrToObj, utilJsonClone } from 'utils/js-func'
 import { TeamStatusForEntry } from 'utils/types'
@@ -65,8 +63,6 @@ function serviceAssignPlayerToFormation(players, formationData) {
 const RosterFormation = ({
     cn
 }) => {
-    const dispatch = useDispatch()
-    const teamNameStore = useSelector(state => state.team.name)
     const teamStore = useSelector(state => state.team.data)
     const [loading, setLoading] = useState(true)
     const [activePlayer, setActivePlayer] = useState({})
@@ -74,9 +70,6 @@ const RosterFormation = ({
     const [playersPos, setPlayersPos] = useState({})
     const [activeFormationModal, setActiveFormationModal] = useState({active: false, type: null})
     
-    const handleTeamName = (obj) => {
-        dispatch(updateTeamName(obj))
-    }
     const handleChangeActivePlayer = (playerId) => {
         const player = startPlayers[playerId]
         setActivePlayer(player)
@@ -105,14 +98,6 @@ const RosterFormation = ({
             }
             {!loading &&
                 <div className={cn}>
-                    <div className="flex items-center">
-                        <TeamNameEditor
-                            title="Roster Detail"
-                            defaultTeamName={teamNameStore}
-                            updateFunc={handleTeamName}
-                        />
-                    </div>
-
                     <div className='relative h-full'>
                         <div className="absolute inset-0 bg-c_neutral_2 w-full h-full p-8 rounded-lg flex flex-col flex-1">
                             <div className='w-full h-full flex gap-x-8'>

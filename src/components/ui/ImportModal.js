@@ -43,7 +43,7 @@ const ImportModal = ({
         else setDisableSubmit(true)
     }, [summary])
     return (
-        <div className="absolute top-0 left-0 w-screen h-screen flex bg-black bg-opacity-60">
+        <div className="absolute top-0 left-0 z-30 w-screen h-screen flex bg-black bg-opacity-60">
             <div className="w-full m-auto max-w-[800px] max-h-[600px] px-6 pt-[18px] pb-6 flex flex-col bg-c_bg_2">
                 <div className="flex items-center justify-between">
                     <h3 className="font-semibold text-c_text_1">Importer</h3>

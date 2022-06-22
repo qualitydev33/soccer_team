@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { WSTORAGE_KEY } from 'utils/constants'
-import { utilCheckNull, utilGetWStorage, utilJsonClone, utilSetWStorage } from 'utils/js-func'
+import {
+    utilCheckNull,
+    utilGetWStorage,
+    utilJsonClone,
+    utilSetWStorage,
+    utilArrToObj
+} from 'utils/js-func'
+
 
 export const teamSlice = createSlice({
     name: 'team',
@@ -10,13 +17,16 @@ export const teamSlice = createSlice({
             value: 'My Team',
             changed: false
         },
+        searchPlayers: {}
     },
     reducers: {
         initTeam: (state, action) => {
             state.data = action.payload
+            state.searchPlayers = action.payload
             utilSetWStorage(WSTORAGE_KEY.team, action.payload)
         },
         updateTeamName: (state, action) => {
+            utilSetWStorage(WSTORAGE_KEY.teamName, action.payload)
             return {
                 ...state,
                 name: {
@@ -31,7 +41,7 @@ export const teamSlice = createSlice({
             utilSetWStorage(WSTORAGE_KEY.team, result)
             return {
                 ...state,
-                data: JSON.parse(JSON.stringify(result))
+                data: utilJsonClone(result)
             }
         },
         deletePlayerById: (state, action) => {
@@ -39,22 +49,43 @@ export const teamSlice = createSlice({
             delete result[action.payload]
             return {
                 ...state,
-                data: JSON.parse(JSON.stringify(result))
+                data: utilJsonClone(result)
             }
         },
         resetTeamFromWStorage: (state) => {
-            let result = utilGetWStorage(WSTORAGE_KEY.team)
-            if (utilCheckNull(result)) return {
+            let team = utilGetWStorage(WSTORAGE_KEY.team)
+            let teamName = utilGetWStorage(WSTORAGE_KEY.teamName)
+            if (utilCheckNull(team)) return {
                 ...state,
                 data: {}
             }
             else {
                 return {
                     ...state,
-                    data: JSON.parse(JSON.stringify(result))
+                    data: utilJsonClone(team),
+                    searchPlayers: utilJsonClone(team),
+                    name: utilJsonClone(teamName)
                 }
             }
         },
+        updateSearchPlayersByKey: (state, action) => {
+            let data = utilJsonClone(state.data)
+            let searchKey = action.payload
+            if (utilCheckNull(searchKey)) {
+                return {
+                    ...state,
+                    searchPlayers: data
+                }
+            } else {
+                let filterResult = Object.values(data).filter(item => String(item.player_name).toLowerCase().includes(searchKey) || String(item.position).toLowerCase().includes(searchKey))
+                let searchResult = utilArrToObj(filterResult, 'id')
+                return {
+                    ...state,
+                    searchPlayers: searchResult
+                }
+            }
+
+        }
     },
 })
 
@@ -64,7 +95,8 @@ export const {
     updateTeamName,
     updatePlayer,
     deletePlayerById,
-    resetTeamFromWStorage
+    resetTeamFromWStorage,
+    updateSearchPlayersByKey
 } = teamSlice.actions
 
 export default teamSlice.reducer

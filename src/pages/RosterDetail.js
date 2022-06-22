@@ -1,10 +1,8 @@
-import { useState, useEffect, useContext } from "react"
-import { ReactReduxContext, useDispatch, useSelector } from "react-redux"
+import { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 import {
     ActionList,
-    Button,
     LoadingSpinner,
-    SearchInput
 } from 'components/ui/Common/Index'
 import {
     DeleteIcon,
@@ -14,11 +12,7 @@ import {
 import {
     DeleteModal,
     EditModal,
-    ImportModal,
-    TeamNameEditor
 } from 'components/ui/Index'
-import { initTeam, updateTeamName } from "store/team/slice"
-import { utilArrToObj } from "utils/js-func"
 import { TABLE_FIELD } from "../utils/types"
 
 function convertTableRow(rowData, field) {
@@ -39,20 +33,13 @@ function convertTableRow(rowData, field) {
 }
 
 const RosterDetail = ({cn}) => {
-    const dispatch = useDispatch()
-    const {store} = useContext(ReactReduxContext)
     const teamStore = useSelector(state => state.team.data)
-    const teamNameStore = useSelector(state => state.team.name)
+    const searchPlayers = useSelector(state => state.team.searchPlayers)
     const [loading, setLoading] = useState(true)
-    const [searchPlayers, setSearchPlayers] = useState({})
     const [activePlayer, setActivePlayer] = useState(null)
-    const [activeImportModal, setActiveImportModal] = useState(false)
     const [activeDeleteModal, setActiveDeleteModal] = useState(false)
     const [activeEditModal, setActiveEditModal] = useState(false)
 
-    const handleTeamName = (obj) => {
-        dispatch(updateTeamName(obj))
-    }
     const handleEditModal = (player) => {
         setActiveEditModal(true)
         setActivePlayer(player)
@@ -61,28 +48,8 @@ const RosterDetail = ({cn}) => {
         setActiveDeleteModal(true)
         setActivePlayer(player)
     }
-    const handleShowImportModal = () => {
-        setActiveImportModal(true)
-    }
-    const handleImport = (data) => {
-        dispatch(initTeam(data))
-    }
-    const handleSearch = (searchKey) => {
-        let filterResult = Object.values(searchPlayers).filter(item => String(item.player_name).toLowerCase().includes(searchKey) || String(item.position).toLowerCase().includes(searchKey))
-        let searchResult = utilArrToObj(filterResult, 'id')
-        setSearchPlayers(searchResult)
-    }
-    const handleResetSearch = () => {
-        setSearchPlayers(teamStore)
-    }
 
     useEffect(() => {
-        setSearchPlayers(teamStore)
-    }, [teamStore])
-
-    useEffect(() => {
-       let teamData = store.getState().team.data
-        setSearchPlayers(teamData)
         setTimeout(() => {
             setLoading(false)
         }, 500);
@@ -92,26 +59,6 @@ const RosterDetail = ({cn}) => {
             {loading && <LoadingSpinner />}
 
             {!loading && <div className={cn}>
-                <div className="flex items-center">
-                    <TeamNameEditor
-                        title="Roster Detail"
-                        defaultTeamName={teamNameStore}
-                        updateFunc={handleTeamName}
-                    />
-                    <div className="flex items-center ml-auto gap-x-2">
-                        <SearchInput 
-                            placeholder={'Find Player'} 
-                            searchFunc={handleSearch}
-                            resetFunc={handleResetSearch}
-                        />
-                        <Button 
-                            title={`${Object.values(teamStore).length > 0 ? 'Re-Import Team' : 'Import Team'}`}
-                            type={`${Object.values(teamStore).length > 0 ? 'primary' : 'warn'}`}
-                            clickFun={handleShowImportModal}
-                        />
-                    </div>
-                </div>
-
                 <div className="relative bg-c_neutral_2 w-full h-full px-5 pt-[17px] pb-[13px] rounded-lg flex flex-col flex-1">
                     <div className="flex justify-between items-center">
                         {TABLE_FIELD.map((item, idx) => {
@@ -167,20 +114,10 @@ const RosterDetail = ({cn}) => {
                                 })}
                             </div>
                         </div>
-
                     }
-                    
-
-                    
                 </div>
             </div>}
-
-            {activeImportModal && 
-                <ImportModal 
-                    cancelFunc={() => setActiveImportModal(false)}
-                    importFunc={handleImport} 
-                />
-            }
+            
             {activeDeleteModal && 
                 <DeleteModal
                     playerId={activePlayer.id} 

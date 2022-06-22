@@ -1,5 +1,6 @@
 export const WSTORAGE_KEY = {
-    team: 'team'
+    team: 'team',
+    teamName: 'teamName'
 }
 
 export const FORMATION_MODAL_CONTENT = {

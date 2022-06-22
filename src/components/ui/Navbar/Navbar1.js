@@ -1,8 +1,8 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Logo} from "components/Icon/Index"
+import { Logo } from "components/Icon/Index"
 
-const LeftSide = ({
+const Navbar1 = ({
     routeList
 }) => {
     const location = useLocation()
@@ -35,11 +35,11 @@ const LeftSide = ({
     )
 }
 
-LeftSide.prototype = {
+Navbar1.prototype = {
     routeList: PropTypes.shape({
         icon: PropTypes.element,
         link: PropTypes.string
     })
 }
 
-export default LeftSide
+export default Navbar1
