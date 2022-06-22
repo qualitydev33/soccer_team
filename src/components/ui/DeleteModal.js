@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
+import { motion } from 'framer-motion'
 import { deletePlayerById } from 'store/team/slice'
 import { CloseIcon } from 'components/Icon/Index'
 import { Button } from "components/ui/Common/Index";
@@ -21,8 +22,15 @@ const DeleteModal = ({
     }
     return (
         <>
-            <div className="absolute top-0 left-0 w-screen h-screen flex bg-black bg-opacity-60">
-                <div className="w-auto m-auto max-h-[600px] min-w-[379px] px-6 pt-[18px] pb-6 flex flex-col gap-y-7 bg-c_bg_2 rounded-lg">
+            <div className="absolute top-0 left-0 w-screen h-screen flex flex-col bg-black bg-opacity-60">
+                <motion.div className="w-auto mx-auto min-w-[379px] px-6 pt-[18px] pb-6 flex flex-col gap-y-7 bg-c_bg_2 rounded-lg"
+                    animate={{ x: 0, y: 150, opacity: 1 }}
+                    transition={{
+                        delay: 0,
+                        x: { type: "spring", stiffness: 200 },
+                        default: { duration: 0.5 },
+                    }}    
+                >
                     <div className="flex items-center justify-between">
                         <h3 className="font-semibold text-c_text_1">{title}</h3>
                         <button
@@ -43,7 +51,7 @@ const DeleteModal = ({
                             clickFun={handleDelete}
                         />
                     </div>
-                </div>
+                </motion.div>
             </div>
         </>
     )

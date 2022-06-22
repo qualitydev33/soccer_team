@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
+import { motion } from 'framer-motion'
 import { CloseIcon } from 'components/Icon/Index';
 import ClickOutside from 'components/ui/ClickOutSide/ClickOutside';
 
@@ -34,36 +35,45 @@ const ActionList = ({
                         onClick={() => {handleActionList()}}>
                         {actionBtn}
                     </button>
-                    {activeList && 
-                        <div className='relative'>
-                            <div 
-                                className={`${isUp ? 'bottom-7' : 'top-0'} absolute  right-1 z-10 min-w-[237px] bg-c_neutral_2 box-shadow rounded-lg px-4 pt-4 pb-8 flex flex-col gap-y-6`}
-                            >
-                                <div className='flex items-center justify-between'>
-                                    <h3 className='text-c_text_1 font-semibold'>{title}</h3>
-                                    <button 
-                                        onClick={() => {setActiveList(false)}}>
-                                        <CloseIcon />
-                                    </button>
-                                </div>
-                                {list.map((item, idx) => {
-                                    let action = item.action
-                                    return (
+                    {activeList &&
+                        <motion.div
+                            animate={{ x: -30, y: 0, opacity: 1 }}
+                            transition={{
+                                delay: 0,
+                                x: { type: "spring", stiffness: 50 },
+                                default: { duration: 1 },
+                            }}
+                        >
+                            <div className='relative'>
+                                <div 
+                                    className={`${isUp ? 'bottom-7' : 'top-0'} absolute  right-1 z-10 min-w-[237px] bg-c_neutral_2 box-shadow rounded-lg px-4 pt-4 pb-8 flex flex-col gap-y-6`}
+                                >
+                                    <div className='flex items-center justify-between'>
+                                        <h3 className='text-c_text_1 font-semibold'>{title}</h3>
                                         <button 
-                                            key={`${item.title}-${idx}`} 
-                                            className="flex items-center gap-x-3 text-c_text_2"
-                                            onClick={() => {
-                                                setActiveList(false)
-                                                action()
-                                            }}
-                                        >
-                                            {item.icon}
-                                            <h5 className='font-medium'>{item.title}</h5>
+                                            onClick={() => {setActiveList(false)}}>
+                                            <CloseIcon />
                                         </button>
-                                    )
-                                })}
+                                    </div>
+                                    {list.map((item, idx) => {
+                                        let action = item.action
+                                        return (
+                                            <button 
+                                                key={`${item.title}-${idx}`} 
+                                                className="flex items-center gap-x-3 text-c_text_2"
+                                                onClick={() => {
+                                                    setActiveList(false)
+                                                    action()
+                                                }}
+                                            >
+                                                {item.icon}
+                                                <h5 className='font-medium'>{item.title}</h5>
+                                            </button>
+                                        )
+                                    })}
+                                </div>
                             </div>
-                        </div>
+                        </motion.div>
                     }
                 </div>
             </ClickOutside>
