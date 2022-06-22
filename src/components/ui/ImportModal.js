@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { utilCheckNull } from 'utils/js-func';
-
 import { CloseIcon } from "components/Icon/Index";
 import { Button, FilePicker } from 'components/ui/Common/Index';
 
@@ -13,8 +11,6 @@ const ImportModal = ({
     const [summary, setSummary] = useState(null)
     const [teamData, setTeamData] = useState({})
     const [disableSubmit, setDisableSubmit] = useState(true)
-
-
     
     const handleDataFromFilePicker = (fileData) => {
         if (fileData.errors === false) {

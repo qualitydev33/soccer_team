@@ -16,7 +16,6 @@ const RadioButton = ({
         })
     }
     useEffect(() => {
-        console.log(defaultValue)
         setActiveRadio(defaultValue)
     }, [])
     return (

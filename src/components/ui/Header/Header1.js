@@ -10,11 +10,10 @@ import {
     SearchInput,
     Button
 } from 'components/ui/Common/Index'
-
 import { 
     initTeam, 
     updateTeamName, 
-    updateSearchPlayersByKey 
+    seachTeamByKey 
 } from "store/team/slice"
 
 const Header1 = () => {
@@ -28,10 +27,10 @@ const Header1 = () => {
         dispatch(updateTeamName(obj))
     }
     const handleSearch = (searchKey) => {
-        dispatch(updateSearchPlayersByKey(searchKey))
+        dispatch(seachTeamByKey(searchKey))
     }
     const handleResetSearch = () => {
-        dispatch(updateSearchPlayersByKey(null))
+        dispatch(seachTeamByKey(null))
     }
     const handleShowImportModal = () => {
         setActiveImportModal(true)

@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux'
 
 import { NATIONALITY, PlayerType, PLAYER_POSITIONS } from 'utils/types'
 import { CloseIcon } from 'components/Icon/Index'
-import { Button,
+import { 
+    Button,
     Input,
     RadioButton,
     SelectInput,

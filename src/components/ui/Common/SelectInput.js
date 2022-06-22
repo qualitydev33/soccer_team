@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import PropTypes from 'prop-types'
-import ClickOutside from "../ClickOutSide/ClickOutside"
+import ClickOutside from "components/ui/ClickOutSide/ClickOutside"
 import {
     ChevronDownIcon
-} from "../../Icon/Index"
+} from "components/Icon/Index"
 
 
 

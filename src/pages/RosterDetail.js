@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useState, useEffect, useContext } from "react"
+import { useSelector, ReactReduxContext } from "react-redux"
 import {
     ActionList,
     LoadingSpinner,
@@ -13,7 +13,7 @@ import {
     DeleteModal,
     EditModal,
 } from 'components/ui/Index'
-import { TABLE_FIELD } from "../utils/types"
+import { TABLE_FIELD } from "utils/types"
 
 function convertTableRow(rowData, field) {
     let result;
@@ -33,9 +33,10 @@ function convertTableRow(rowData, field) {
 }
 
 const RosterDetail = ({cn}) => {
+    const {store} = useContext(ReactReduxContext)
     const teamStore = useSelector(state => state.team.data)
-    const searchPlayers = useSelector(state => state.team.searchPlayers)
     const [loading, setLoading] = useState(true)
+    const [searchPlayers, setSearchPlayers] = useState({})
     const [activePlayer, setActivePlayer] = useState(null)
     const [activeDeleteModal, setActiveDeleteModal] = useState(false)
     const [activeEditModal, setActiveEditModal] = useState(false)
@@ -50,6 +51,12 @@ const RosterDetail = ({cn}) => {
     }
 
     useEffect(() => {
+        setSearchPlayers(teamStore)
+    }, [teamStore])
+
+    useEffect(() => {
+        let teamData = store.getState().team.data
+        setSearchPlayers(teamData)
         setTimeout(() => {
             setLoading(false)
         }, 500);
@@ -117,7 +124,7 @@ const RosterDetail = ({cn}) => {
                     }
                 </div>
             </div>}
-            
+
             {activeDeleteModal && 
                 <DeleteModal
                     playerId={activePlayer.id} 

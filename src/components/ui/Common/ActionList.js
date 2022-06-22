@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
-import {
-    CloseIcon
-} from '../../Icon/Index';
-import ClickOutside from '../ClickOutSide/ClickOutside';
+import { CloseIcon } from 'components/Icon/Index';
+import ClickOutside from 'components/ui/ClickOutSide/ClickOutside';
 
 
 const ActionList = ({

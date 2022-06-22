@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import PapaParse from 'papaparse'
 import {v4 as UUID_v4} from 'uuid'
-import { utilArrToObj, utilIsNullInArrayOfObj } from '../../../utils/js-func';
+import { utilArrToObj, utilIsNullInArrayOfObj } from 'utils/js-func';
 
 function convertData(item) {
     item.id = UUID_v4()
@@ -28,7 +28,6 @@ function csvToArray(str) {
     )
     var filteredData = csvData.data.map(convertData) 
     csvData.data = utilArrToObj(filteredData, 'id')
-    console.log("csvData=", csvData)
     return csvData
 }
 
