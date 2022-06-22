@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { useSelector, ReactReduxContext } from "react-redux"
+import { useSelector, ReactReduxContext, useDispatch } from "react-redux"
 import {
     ActionList,
     LoadingSpinner,
@@ -12,8 +12,12 @@ import {
 import {
     DeleteModal,
     EditModal,
+    ImportModal
 } from 'components/ui/Index'
 import { TABLE_FIELD } from "utils/types"
+import { 
+    initTeam
+} from "store/team/slice"
 
 function convertTableRow(rowData, field) {
     let result;
@@ -34,12 +38,21 @@ function convertTableRow(rowData, field) {
 
 const RosterDetail = ({cn}) => {
     const {store} = useContext(ReactReduxContext)
+    const dispatch = useDispatch()
     const teamStore = useSelector(state => state.team.data)
     const [loading, setLoading] = useState(true)
     const [searchPlayers, setSearchPlayers] = useState({})
     const [activePlayer, setActivePlayer] = useState(null)
     const [activeDeleteModal, setActiveDeleteModal] = useState(false)
     const [activeEditModal, setActiveEditModal] = useState(false)
+    const [activeImportModal, setActiveImportModal] = useState(false)
+
+    const handleShowImportModal = () => {
+        setActiveImportModal(true)
+    }
+    const handleImport = (data) => {
+        dispatch(initTeam(data))
+    }
 
     const handleEditModal = (player) => {
         setActiveEditModal(true)
@@ -125,6 +138,12 @@ const RosterDetail = ({cn}) => {
                 </div>
             </div>}
 
+            {activeImportModal && 
+                <ImportModal 
+                    cancelFunc={() => setActiveImportModal(false)}
+                    importFunc={handleImport} 
+                />
+            }
             {activeDeleteModal && 
                 <DeleteModal
                     playerId={activePlayer.id} 

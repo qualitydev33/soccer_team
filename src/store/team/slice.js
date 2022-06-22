@@ -22,6 +22,7 @@ export const teamSlice = createSlice({
         initTeam: (state, action) => {
             state.data = action.payload
             utilSetWStorage(WSTORAGE_KEY.team, action.payload)
+            utilSetWStorage(WSTORAGE_KEY.teamName, state.name)
         },
         updateTeamName: (state, action) => {
             utilSetWStorage(WSTORAGE_KEY.teamName, action.payload)
@@ -43,8 +44,9 @@ export const teamSlice = createSlice({
             }
         },
         deletePlayerById: (state, action) => {
-            let result = Object.assign({}, state.data)
+            let result = utilJsonClone(state.data)
             delete result[action.payload]
+            utilSetWStorage(WSTORAGE_KEY.team, result)
             return {
                 ...state,
                 data: utilJsonClone(result)

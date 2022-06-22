@@ -9,6 +9,10 @@ const ImportModal = ({
     cancelFunc,
     importFunc
 }) => {
+    const aniVariant = {
+        show: { opacity: 1 },
+        hidden: { opacity: 0 }
+    }
     const [summary, setSummary] = useState(null)
     const [teamData, setTeamData] = useState({})
     const [disableSubmit, setDisableSubmit] = useState(true)
@@ -42,13 +46,10 @@ const ImportModal = ({
     return (
         <>
             <div className='absolute top-0 left-0 z-30 w-screen h-screen flex flex-col bg-black bg-opacity-60'>
-                <motion.div className="w-full mx-auto max-w-[800px] max-h-[600px] px-6 pt-[18px] pb-6 flex flex-col bg-c_bg_2"
-                    animate={{ x: 0, y: 150, opacity: 1 }}
-                    transition={{
-                        delay: 0,
-                        x: { type: "spring", stiffness: 150 },
-                        default: { duration: 0.5 },
-                    }}
+                <motion.div className="w-full m-auto max-w-[800px] max-h-[600px] px-6 pt-[18px] pb-6 flex flex-col bg-c_bg_2"
+                    variants={aniVariant}
+                    initial="hidden"
+                    animate="show"
                 >
                     <div className="flex items-center justify-between">
                         <h3 className="font-semibold text-c_text_1">Importer</h3>

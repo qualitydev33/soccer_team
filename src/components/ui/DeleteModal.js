@@ -12,6 +12,10 @@ const DeleteModal = ({
     desc,
     closeFun,
 }) => {
+    const aniVariant = {
+        show: { opacity: 1 },
+        hidden: { opacity: 0 }
+    }
     const dispatch = useDispatch()
     const handleCancel = () => {
         closeFun()
@@ -23,13 +27,10 @@ const DeleteModal = ({
     return (
         <>
             <div className="absolute top-0 left-0 w-screen h-screen flex flex-col bg-black bg-opacity-60">
-                <motion.div className="w-auto mx-auto min-w-[379px] px-6 pt-[18px] pb-6 flex flex-col gap-y-7 bg-c_bg_2 rounded-lg"
-                    animate={{ x: 0, y: 150, opacity: 1 }}
-                    transition={{
-                        delay: 0,
-                        x: { type: "spring", stiffness: 200 },
-                        default: { duration: 0.5 },
-                    }}    
+                <motion.div className="w-auto m-auto min-w-[379px] px-6 pt-[18px] pb-6 flex flex-col gap-y-7 bg-c_bg_2 rounded-lg"
+                    variants={aniVariant}
+                    initial="hidden"
+                    animate="show" 
                 >
                     <div className="flex items-center justify-between">
                         <h3 className="font-semibold text-c_text_1">{title}</h3>
