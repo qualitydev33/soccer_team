@@ -16,8 +16,15 @@ const SelectInput = ({
     maxHeight = 500,
     clickFun
 }) => {
+    /**
+     * variable
+     */
     const [activeSelect, setActiveSelect] = useState(false)
     const [activeValue, setActiveValue] = useState('')
+
+    /**
+     * method
+     */
     const handleSelect = (v) => {
         setActiveValue(v)
         setActiveSelect(false)
@@ -26,9 +33,17 @@ const SelectInput = ({
             value: v
         })
     }
+
+    /**
+     * hooks
+     */
     useEffect(() => {
         setActiveValue(defaultVal)
     }, [])
+
+    /**
+     * render
+     */
     return <ClickOutside active={activeSelect} onClick={() => setActiveSelect(false)}>
                 <div className="flex flex-col gap-y-2">
                     <h5 className="text-c_text_5 font-medium">{label}</h5>

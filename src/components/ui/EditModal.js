@@ -21,6 +21,9 @@ const EditModal = ({
     player,
     closeFun,
 }) => {
+    /**
+     * variable
+     */
     const aniVariant = {
         show: { opacity: 1 },
         hidden: { opacity: 0 }
@@ -30,6 +33,9 @@ const EditModal = ({
     const [activePlayer, setActivePlayer] = useState({})
     const [disabledSubmit, setDisabledSubmit] = useState(true)
 
+    /**
+     * method
+     */
     const handleActivePlayer = (obj) => {
         let compareResult = utilCompareObject(originActivePlayer, {...activePlayer, [obj.name]: obj.value})
         setDisabledSubmit(compareResult)
@@ -40,16 +46,22 @@ const EditModal = ({
         closeFun()
     }
 
+    /**
+     * hooks
+     */
     useEffect(() => {
         setActivePlayer(player)
         originActivePlayer = player
         setLoading(false)
     }, [])
+
+    
     return (
         <>  
             {loading && <LoadingSpinner />}
             {!loading && <div className="absolute top-0 left-0 w-screen h-screen flex flex-col bg-black bg-opacity-60">
-                <motion.div className="w-auto m-auto max-h-[600px] min-w-[480px] p-6 flex flex-col gap-y-6 bg-c_bg_2 rounded-lg"
+                <motion.div
+                    className="w-auto m-auto max-h-[600px] min-w-[480px] p-6 flex flex-col gap-y-6 bg-c_bg_2 rounded-lg"
                     variants={aniVariant}
                     initial="hidden"
                     animate="show"    

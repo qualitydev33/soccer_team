@@ -37,6 +37,9 @@ function convertTableRow(rowData, field) {
 }
 
 const RosterDetail = ({cn}) => {
+    /**
+     * variable
+     */
     const {store} = useContext(ReactReduxContext)
     const dispatch = useDispatch()
     const teamStore = useSelector(state => state.team.data)
@@ -47,6 +50,9 @@ const RosterDetail = ({cn}) => {
     const [activeEditModal, setActiveEditModal] = useState(false)
     const [activeImportModal, setActiveImportModal] = useState(false)
 
+    /**
+     * method
+     */
     const handleShowImportModal = () => {
         setActiveImportModal(true)
     }
@@ -63,6 +69,9 @@ const RosterDetail = ({cn}) => {
         setActivePlayer(player)
     }
 
+    /**
+     * hooks
+     */
     useEffect(() => {
         setSearchPlayers(teamStore)
     }, [teamStore])
@@ -74,6 +83,10 @@ const RosterDetail = ({cn}) => {
             setLoading(false)
         }, 500);
     }, [])
+
+    /**
+     * render
+     */
     return (
         <>
             {loading && <LoadingSpinner />}

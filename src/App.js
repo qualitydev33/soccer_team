@@ -16,30 +16,42 @@ import { resetTeamFromWStorage } from "store/team/slice"
 
 
 const App = () => {
+  /**
+   * variable
+   */
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
+  
+  /**
+   * hooks
+   */
   useEffect(() => {
     dispatch(resetTeamFromWStorage())
     setLoading(false)
   }, [])
+
+  /**
+   * render
+   */
   return (
     <>
-      {loading && 
-        <LoadingSpinner />
-      }
+      {loading && <LoadingSpinner />}
       {!loading && 
         <Layout1 cn={'flex'}>
           <Routes>
-            <Route path="*" element={<Navigate to="/" />} />
             <Route 
-                path="/" 
-                exact 
-                element={<RosterDetail cn='flex flex-col h-full' />}
+              path="*" 
+              element={<Navigate to="/" />} 
+            />
+            <Route 
+              path="/" 
+              exact 
+              element={<RosterDetail cn='flex flex-col h-full' />}
             ></Route>
             <Route 
-                path="/formation" 
-                exact 
-                element={<RosterFormation cn='flex flex-col h-full' />}
+              path="/formation" 
+              exact 
+              element={<RosterFormation cn='flex flex-col h-full' />}
             ></Route>
         </Routes>
         </Layout1>

@@ -1,4 +1,4 @@
-export function utilCheckNull(val) {
+export function utilIsNull(val) {
     return val === null || val === undefined || String(val).toLowerCase() === "n/a"
 }
 
@@ -11,7 +11,7 @@ export function utilSetWStorage(key, value) {
 }
 export function utilGetWStorage(key) {
     let result = window.localStorage.getItem(key)
-    if (!utilCheckNull(result)) return JSON.parse(result)
+    if (!utilIsNull(result)) return JSON.parse(result)
     else return null
 }
 

@@ -17,12 +17,18 @@ import {
 } from "store/team/slice"
 
 const Header1 = () => {
+    /**
+     * variable
+     */
     const dispatch = useDispatch()
     const location = useLocation()
     const teamNameStore = useSelector(state => state.team.name)
     const teamStore = useSelector(state => state.team.data)
     const [activeImportModal, setActiveImportModal] = useState(false)
     
+    /**
+     * method
+     */
     const handleTeamName = (obj) => {
         dispatch(updateTeamName(obj))
     }
@@ -39,6 +45,9 @@ const Header1 = () => {
         dispatch(initTeam(data))
     }
     
+    /**
+     * render
+     */
     return (
         <>
             <div className="flex items-center">

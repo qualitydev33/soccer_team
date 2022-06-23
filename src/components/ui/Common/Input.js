@@ -6,6 +6,9 @@ const Input = ({
     defaultValue,
     changeFun
 }) => {
+    /**
+     * render
+     */
     return (
         <>
             <div className="flex flex-col gap-y-2 w-full">

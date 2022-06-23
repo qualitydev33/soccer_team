@@ -10,9 +10,16 @@ const ActionList = ({
     title,
     list,
 }) => {
+    /**
+     * variable
+     */
     const [activeList, setActiveList] = useState(false)
     const [isUp, setIsUp] = useState(false)
     const actionBtnRef = useRef(null)
+    
+    /**
+     * method
+     */
     const handleActionList = () => {
         const bodyHeight = document.querySelector('body').getBoundingClientRect().bottom
         const actionBtnRefPosY = actionBtnRef.current.getBoundingClientRect().bottom
@@ -23,6 +30,10 @@ const ActionList = ({
         }
         setActiveList(true)
     }
+
+    /**
+     * render
+     */
     return (
         <>
             <ClickOutside 
@@ -45,13 +56,12 @@ const ActionList = ({
                             }}
                         >
                             <div className='relative'>
-                                <div 
-                                    className={`${isUp ? 'bottom-7' : 'top-0'} absolute  right-1 z-10 min-w-[237px] bg-c_neutral_2 box-shadow rounded-lg px-4 pt-4 pb-8 flex flex-col gap-y-6`}
-                                >
+                                <div className={`${isUp ? 'bottom-7' : 'top-0'} absolute  right-1 z-10 min-w-[237px] bg-c_neutral_2 box-shadow rounded-lg px-4 pt-4 pb-8 flex flex-col gap-y-6`}>
                                     <div className='flex items-center justify-between'>
                                         <h3 className='text-c_text_1 font-semibold'>{title}</h3>
                                         <button 
-                                            onClick={() => {setActiveList(false)}}>
+                                            onClick={() => {setActiveList(false)}}
+                                        >
                                             <CloseIcon />
                                         </button>
                                     </div>

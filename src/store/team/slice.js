@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { WSTORAGE_KEY } from 'utils/constants'
 import {
-    utilCheckNull,
+    utilIsNull,
     utilGetWStorage,
     utilJsonClone,
     utilSetWStorage,
@@ -55,7 +55,7 @@ export const teamSlice = createSlice({
         resetTeamFromWStorage: (state) => {
             let team = utilGetWStorage(WSTORAGE_KEY.team)
             let teamName = utilGetWStorage(WSTORAGE_KEY.teamName)
-            if (utilCheckNull(team)) return {
+            if (utilIsNull(team)) return {
                 ...state,
                 data: {}
             }
@@ -70,7 +70,7 @@ export const teamSlice = createSlice({
         seachTeamByKey: (state, action) => {
             let data = utilGetWStorage(WSTORAGE_KEY.team)
             let searchKey = action.payload
-            if (utilCheckNull(searchKey)) {
+            if (utilIsNull(searchKey)) {
                 return {
                     ...state,
                     data: data

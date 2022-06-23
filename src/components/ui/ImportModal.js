@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion'
-import { utilCheckNull } from 'utils/js-func';
+import { utilIsNull } from 'utils/js-func';
 import { CloseIcon } from "components/Icon/Index";
 import { Button, FilePicker } from 'components/ui/Common/Index';
 
@@ -9,6 +9,9 @@ const ImportModal = ({
     cancelFunc,
     importFunc
 }) => {
+    /**
+     * variable
+     */
     const aniVariant = {
         show: { opacity: 1 },
         hidden: { opacity: 0 }
@@ -17,6 +20,9 @@ const ImportModal = ({
     const [teamData, setTeamData] = useState({})
     const [disableSubmit, setDisableSubmit] = useState(true)
     
+    /**
+     * method
+     */
     const handleDataFromFilePicker = (fileData) => {
         if (fileData.errors === false) {
             setTeamData(fileData.data)
@@ -39,14 +45,23 @@ const ImportModal = ({
             importFunc(teamData)
         }
     }
+
+    /**
+     * hooks
+     */
     useEffect(() => {
-        if (!utilCheckNull(summary)) setDisableSubmit(false)
+        if (!utilIsNull(summary)) setDisableSubmit(false)
         else setDisableSubmit(true)
     }, [summary])
+
+    /**
+     * render
+     */
     return (
         <>
             <div className='absolute top-0 left-0 z-30 w-screen h-screen flex flex-col bg-black bg-opacity-60'>
-                <motion.div className="w-full m-auto max-w-[800px] max-h-[600px] px-6 pt-[18px] pb-6 flex flex-col bg-c_bg_2"
+                <motion.div
+                    className="w-full m-auto max-w-[800px] max-h-[600px] px-6 pt-[18px] pb-6 flex flex-col bg-c_bg_2"
                     variants={aniVariant}
                     initial="hidden"
                     animate="show"

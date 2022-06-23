@@ -25,14 +25,22 @@ function checkModalType(type) {
 const FormationModal = ({
     type
 }) => {
+    /**
+     * variable
+     */
     const aniVariant = {
         show: { opacity: 1 },
         hidden: { opacity: 0 }
     }
     const modalContent = checkModalType(type)
+    
+    /**
+     * render
+     */
     return (
         <>
-            <motion.div className="box-shadow absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mx-auto max-h-[600px] w-[379px] p-6 flex flex-col gap-y-2 bg-c_neutral_2 rounded-lg"
+            <motion.div
+                className="box-shadow absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mx-auto max-h-[600px] w-[379px] p-6 flex flex-col gap-y-2 bg-c_neutral_2 rounded-lg"
                 variants={aniVariant}
                 initial="hidden"
                 animate="show"

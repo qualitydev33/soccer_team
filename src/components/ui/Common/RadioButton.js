@@ -7,7 +7,14 @@ const RadioButton = ({
     name,
     changeFun
 }) => {
+    /**
+     * variable
+     */
     const [activeRadio, setActiveRadio] = useState(false)
+    
+    /**
+     * method
+     */
     const handleRadio = (v) => {
         setActiveRadio(v)
         changeFun({
@@ -15,9 +22,17 @@ const RadioButton = ({
             value: v
         })
     }
+
+    /**
+     * hooks
+     */
     useEffect(() => {
         setActiveRadio(defaultValue)
     }, [])
+
+    /**
+     * render
+     */
     return (
         <>
             <div className="flex flex-col gap-y-2 w-full cursor-pointer">

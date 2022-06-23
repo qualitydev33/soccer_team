@@ -5,6 +5,9 @@ const PlayerPosition = ({
     activePlayer,
     clickFun
 }) => {
+    /**
+     * render
+     */
     return (
         <>
             <div className={`flex flex-col gap-y-1`}>

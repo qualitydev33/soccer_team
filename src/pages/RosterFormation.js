@@ -63,6 +63,9 @@ function serviceAssignPlayerToFormation(players, formationData) {
 const RosterFormation = ({
     cn
 }) => {
+    /**
+     * variable
+     */
     const teamStore = useSelector(state => state.team.data)
     const [loading, setLoading] = useState(true)
     const [activePlayer, setActivePlayer] = useState({})
@@ -70,11 +73,17 @@ const RosterFormation = ({
     const [playersPos, setPlayersPos] = useState({})
     const [activeFormationModal, setActiveFormationModal] = useState({active: false, type: null})
     
+    /**
+     * method
+     */
     const handleChangeActivePlayer = (playerId) => {
         const player = startPlayers[playerId]
         setActivePlayer(player)
     }
 
+    /**
+     * hooks
+     */
     useEffect(() => {
         const players = Object.values(teamStore).filter(item => item.starter === true)
         const posData = serviceAssignPlayerToFormation(players, FORMATION_SYSTEM['sys-4-3-3'])
@@ -91,6 +100,10 @@ const RosterFormation = ({
             setLoading(false)    
         }, 500);
     }, [])
+
+    /**
+     * render
+     */
     return (
         <>
             {loading &&

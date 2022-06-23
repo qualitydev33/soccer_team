@@ -10,6 +10,9 @@ const Pitch = ({
     activePlayer,
     changeActiveFun,
 }) => {
+    /**
+     * render
+     */
     return (
         <>
             <div className={cn}>

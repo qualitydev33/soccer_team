@@ -8,12 +8,23 @@ const TeamNameEditor = ({
     defaultTeamName,
     updateFunc
 }) => {
+    /**
+     * variable
+     */
     const [active, setActive] = useState(false)
     const [teamName, setTeamName] = useState(defaultTeamName)
+    
+    /**
+     * method
+     */
     const handleTeamName = () => {
         updateFunc({...teamName, changed: true})
         setActive(!active)
     }
+
+    /**
+     * hooks
+     */
     useEffect(() => {
         setTeamName(defaultTeamName)
     }, [])
@@ -31,10 +42,16 @@ const TeamNameEditor = ({
                             onChange={(evt) => setTeamName({...teamName, value: evt.target.value})}
                         />
                     }
-                    <button className={`${active ? 'invisible' : `${defaultTeamName.changed ? 'invisible group-hover:visible' : 'visible'}`}`} onClick={() => handleTeamName()}>
+                    <button 
+                        className={`${active ? 'invisible' : `${defaultTeamName.changed ? 'invisible group-hover:visible' : 'visible'}`}`} 
+                        onClick={() => handleTeamName()}
+                    >
                         <PenIcon />
                     </button>
-                    <button className={`${!active ? 'invisible' : 'visible'}`} onClick={() => handleTeamName()}>
+                    <button 
+                        className={`${!active ? 'invisible' : 'visible'}`} 
+                        onClick={() => handleTeamName()}
+                    >
                         <CheckIcon />
                     </button>
                 </div>

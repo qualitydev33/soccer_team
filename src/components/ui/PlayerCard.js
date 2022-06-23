@@ -3,7 +3,9 @@ import { PlayerType } from "utils/types"
 const PlayerCard = ({
     player
 }) => {
-    
+    /**
+     * render
+     */
     return (
         <>
             {Object.values(player).length > 0 && 

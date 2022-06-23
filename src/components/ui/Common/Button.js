@@ -8,6 +8,9 @@ const Button = ({
     disabled,
     clickFun
 }) => {
+    /**
+     * method
+     */
     const handleBtnType = (str) => {
         let result = 'primary'
         switch (str) {
@@ -24,6 +27,10 @@ const Button = ({
         }
         return result
     }
+
+    /**
+     * render
+     */
     return (
         <>
             <button 

@@ -35,8 +35,15 @@ const FilePicker = ({
     placeholder,
     returnFileData
 }) => {
+    /**
+     * variable
+     */
     const [filePath, setFilePath] = useState('')
     const [isInValid, setIsInValid] = useState(false)
+
+    /**
+     * method
+     */
     const handleFilePicker = (evt) => {
         setFilePath(evt.target.value)
         const fileReader = new FileReader()
@@ -51,6 +58,9 @@ const FilePicker = ({
         fileReader.readAsBinaryString(file)
     }
 
+    /**
+     * render
+     */
     return (
         <>
             <div className="relative max-w-[300px]">
@@ -64,7 +74,6 @@ const FilePicker = ({
                 <label 
                     htmlFor="file_picker" 
                     className={`cursor-pointer absolute top-0 right-0 h-11 py-3 px-4 bg-transparent border rounded-lg text-sm text-c_text_2 ${filePath === null ? 'border-c_primary_red' : 'border-c_border'}`}
-                    
                 >Select File</label>
                 <input 
                     type="file" 

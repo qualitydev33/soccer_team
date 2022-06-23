@@ -11,8 +11,15 @@ const SearchInput = ({
     searchFunc,
     resetFunc
 }) => {
+    /**
+     * variable
+     */
     const [searchKey, setSearchKey] = useState('')
     const [searched, setSearched] = useState(false)
+    
+    /**
+     * method
+     */
     const handleCancel = () => {
         setSearched(false);
         setSearchKey('')
@@ -26,6 +33,10 @@ const SearchInput = ({
         if (e.keyCode === 13) handleSearch()
         else if (e.keyCode === 27) handleCancel()
     }
+
+    /**
+     * render
+     */
     return (
         <div className="relative">
             <div className="absolute top-1/2 left-3 -translate-y-1/2">

@@ -5,11 +5,22 @@ import { Logo } from "components/Icon/Index"
 const Navbar1 = ({
     routeList
 }) => {
+    /**
+     * variable
+     */
     const location = useLocation()
     const navigate = useNavigate()
+    
+    /**
+     * method
+     */
     const handleLink = (link) => {
         navigate(link)
     }
+
+    /**
+     * render
+     */
     return (
         <>
             <div className=" bg-c_bg_1 w-[60px] h-screen flex flex-col pt-5 px-[10px]">
