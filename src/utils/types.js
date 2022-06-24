@@ -1,16 +1,13 @@
 import PropTypes from "prop-types";
 
-export const TABLE_FIELD = ["Player Name", "Jersey Number", "Position", "Height", "Weight", "Nationality", "Appearances", "Minutes Played"]
-export const TeamStatusForEntry = ['NO_DATA', 'NOT_ENOUGH_STARTER', 'TOO_MANY_STARTER']
-export const PLAYER_POSITIONS = ["Goalkeeper", "Defender", "Midfielder", "Forward"]
-export const NATIONALITY = ["Italian", "Portuguese", "Dutch", "Costa Rican", "French", "Spanish", "Morocco", "Brazilian", "Argentinian"]
+
 
 export const PlayerType = PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     player_name: PropTypes.string.isRequired,
     player_image: PropTypes.string.isRequired,
     jersey_number: PropTypes.string.isRequired,
-    position: PropTypes.oneOf(PLAYER_POSITIONS),
+    position: PropTypes.string,
     height: PropTypes.number,
     weight: PropTypes.number,
     nationality: PropTypes.string,

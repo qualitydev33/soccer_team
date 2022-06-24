@@ -1,23 +1,25 @@
 import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
-import { FORMATION_MODAL_CONTENT } from 'utils/constants'
-import { TeamStatusForEntry } from 'utils/types'
+import { FORMATION_MODAL_STATUS } from 'utils/constants'
 import { TriangleWarnIcon } from 'components/Icon/Index'
 
 
-function checkModalType(type) {
+function checkModalDetail(type) {
     let result;
     switch (type) {
-        case TeamStatusForEntry[2]:
-            result = FORMATION_MODAL_CONTENT.TOO_MANY_STARTER
+        case FORMATION_MODAL_STATUS.TOO_MANY_STARTER.value:
+            result = FORMATION_MODAL_STATUS.TOO_MANY_STARTER
             break;
-
-        case TeamStatusForEntry[1]:
-            result = FORMATION_MODAL_CONTENT.NOT_ENOUGH_STARTER
+        case FORMATION_MODAL_STATUS.NOT_ENOUGH_STARTER.value:
+            result = FORMATION_MODAL_STATUS.NOT_ENOUGH_STARTER
             break;
-        case TeamStatusForEntry[0]:
-            result = FORMATION_MODAL_CONTENT.NO_DATA
+        case FORMATION_MODAL_STATUS.NO_DATA.value:
+            result = FORMATION_MODAL_STATUS.NO_DATA
             break;
+        default: 
+            result = FORMATION_MODAL_STATUS.OTHER
+            break;
+        
     }
     return result
 }
@@ -32,7 +34,7 @@ const FormationModal = ({
         show: { opacity: 1 },
         hidden: { opacity: 0 }
     }
-    const modalContent = checkModalType(type)
+    const modalContent = checkModalDetail(type)
     
     /**
      * render
@@ -56,7 +58,7 @@ const FormationModal = ({
 }
 
 FormationModal.prototype = {
-    type: PropTypes.oneOf(TeamStatusForEntry),
+    type: PropTypes.string,
 }
 
 export default FormationModal

@@ -14,7 +14,7 @@ import {
     EditModal,
     ImportModal
 } from 'components/ui/Index'
-import { TABLE_FIELD } from "utils/types"
+import { TABLE_FIELD } from "utils/constants"
 import { 
     initTeam
 } from "store/team/slice"

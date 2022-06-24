@@ -31,7 +31,7 @@ const Pitch = ({
                 </svg> */}
                 {Object.values(startPlayers).map((item, idx) => {
                     return (
-                        <div key={`start-${idx}`} className={`absolute ${playersPos[item.id]} w-[150px] min-w-[150px] flex justify-center`}>
+                        <div key={`start-${idx}`} className={`absolute ${playersPos[item.id].posCSS} w-[150px] min-w-[150px] flex justify-center`}>
                             <PlayerPosition
                                 player={item}
                                 activePlayer={activePlayer}

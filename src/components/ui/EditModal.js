@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
 import { useDispatch } from 'react-redux'
 
-import { NATIONALITY, PlayerType, PLAYER_POSITIONS } from 'utils/types'
+import { PlayerType } from 'utils/types'
+import { PLAYER_POSITIONS, NATIONALITY } from 'utils/constants'
 import { CloseIcon } from 'components/Icon/Index'
 import { 
     Button,
@@ -116,7 +117,7 @@ const EditModal = ({
                             label='Position' 
                             defaultVal={player.position}
                             name="position"
-                            options={PLAYER_POSITIONS}
+                            options={Object.values(PLAYER_POSITIONS)}
                             clickFun={handleActivePlayer}
                         />
                         <RadioButton 

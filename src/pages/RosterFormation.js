@@ -11,7 +11,7 @@ import {
 } from 'components/ui/Common/Index'
 import { FORMATION_SYSTEM } from 'utils/constants'
 import { utilArrToObj, utilJsonClone } from 'utils/js-func'
-import { TeamStatusForEntry } from 'utils/types'
+import { FORMATION_MODAL_STATUS, PLAYER_POSITIONS } from 'utils/constants'
 
 
 function serviceValidateStartPlayer(playersPos) {
@@ -22,15 +22,29 @@ function serviceValidateStartPlayer(playersPos) {
     }
     if (playersPosArr.length < 11) {
         result.status = false
-        result.msg = TeamStatusForEntry[1]
+        result.msg = FORMATION_MODAL_STATUS.NOT_ENOUGH_STARTER.value
+        return result
     }
     if (playersPosArr.length > 11) {
         result.status = false
-        result.msg = TeamStatusForEntry[2]
+        result.msg = FORMATION_MODAL_STATUS.TOO_MANY_STARTER.value
+        return result
     }
     if (playersPosArr.length === 0) {
         result.status = false
-        result.msg = TeamStatusForEntry[0]
+        result.msg = FORMATION_MODAL_STATUS.NO_DATA.value
+        return result
+    }
+    // Checking 4-3-3 system
+    let numGoalKeeper = playersPosArr.filter(item => item.position === PLAYER_POSITIONS.goalkeeper).length
+    let numDefender = playersPosArr.filter(item => item.position === PLAYER_POSITIONS.defender).length
+    let numMidfielder = playersPosArr.filter(item => item.position === PLAYER_POSITIONS.midfielder).length
+    let numForward = playersPosArr.filter(item => item.position === PLAYER_POSITIONS.forward).length
+    const is_4_3_3 = numGoalKeeper === 1 && numDefender === 4 && numMidfielder === 3 && numForward === 3
+    if (!is_4_3_3) {
+        result.status = false
+        result.msg = FORMATION_MODAL_STATUS.OTHER.value
+        return result
     }
     return result
 }
@@ -41,19 +55,19 @@ function serviceAssignPlayerToFormation(players, formationData) {
     let playersPos = {}
     startPlayers.map(item => {
         if (item.position === 'Defender') {
-            playersPos[item.id] = formation.defender[0]
+            playersPos[item.id] = {...item, posCSS: formation.defender[0]}
             formation.defender.shift()
         }
         if (item.position === 'Midfielder') {
-            playersPos[item.id] = formation.midfielder[0]
+            playersPos[item.id] = {...item, posCSS: formation.midfielder[0]}
             formation.midfielder.shift()
         }
         if (item.position === 'Forward') {
-            playersPos[item.id] = formation.forward[0]
+            playersPos[item.id] = {...item, posCSS: formation.forward[0]}
             formation.forward.shift()
         }
         if (item.position === 'Goalkeeper') {
-            playersPos[item.id] = formation.goalkeeper[0]
+            playersPos[item.id] = {...item, posCSS: formation.goalkeeper[0]}
             formation.goalkeeper.shift()
         }
     })

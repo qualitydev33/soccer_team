@@ -3,18 +3,36 @@ export const WSTORAGE_KEY = {
     teamName: 'teamName'
 }
 
-export const FORMATION_MODAL_CONTENT = {
+export const TABLE_FIELD = ["Player Name", "Jersey Number", "Position", "Height", "Weight", "Nationality", "Appearances", "Minutes Played"]
+    // export const PLAYER_POSITIONS = ["Goalkeeper", "Defender", "Midfielder", "Forward"]
+export const PLAYER_POSITIONS = {
+    goalkeeper: "Goalkeeper",
+    defender: "Defender",
+    midfielder: "Midfielder",
+    forward: "Forward"
+}
+export const NATIONALITY = ["Italian", "Portuguese", "Dutch", "Costa Rican", "French", "Spanish", "Morocco", "Brazilian", "Argentinian"]
+
+export const FORMATION_MODAL_STATUS = {
     TOO_MANY_STARTER: {
+        value: 'TOO_MANY_STARTER',
         title: 'There are too many starters',
         desc: 'Your team has too many starters for one or more of the positions in the 4-3-3 formation'
     },
     NOT_ENOUGH_STARTER: {
+        value: 'NOT_ENOUGH_STARTER',
         title: 'Not enough starters',
         desc: "Your team doesn't have enough starters for one or more of the positions in the 4-3-3 formation"
     },
     NO_DATA: {
+        value: 'NO_DATA',
         title: 'No player data found',
         desc: 'Please import your roster first'
+    },
+    OTHER: {
+        value: 'OTHER',
+        title: 'Unexpected Problem found',
+        desc: "Now team hasn't 4-3-3 formation"
     }
 }
 
