@@ -1,6 +1,8 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import { Logo } from "components/Icon/Index"
+import { resetTeamFromWStorage } from "store/team/slice"
 
 const Navbar1 = ({
     routeList
@@ -10,11 +12,13 @@ const Navbar1 = ({
      */
     const location = useLocation()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     
     /**
      * method
      */
     const handleLink = (link) => {
+        dispatch(resetTeamFromWStorage())
         navigate(link)
     }
 
