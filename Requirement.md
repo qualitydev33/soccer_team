@@ -4,7 +4,7 @@
 
 You are to develop a Football Manager app, where a team can be managed, players added, deleted or updated. And a view of the team’s formation is visible with the starters being shown in the field. Next you’ll be introduced to the challenge
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=hsmamozWpqA)
+<!-- [![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=hsmamozWpqA) -->
 
 ## Challenge Resources
 
