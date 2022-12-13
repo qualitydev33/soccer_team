@@ -1,12 +1,13 @@
 # React Developer - Code challenge
 
+![Screenshot_41](https://user-images.githubusercontent.com/60603371/207232735-a994a398-6e49-4b93-a49e-46291558edbd.png)
+
+![Screenshot_42](https://user-images.githubusercontent.com/60603371/207232749-b0dfc6dc-0f4d-4ae5-9402-42c2387323f5.png)
+
 ## Code Challenge
 
 You are to develop a Football Manager app, where a team can be managed, players added, deleted or updated. And a view of the team’s formation is visible with the starters being shown in the field. Next you’ll be introduced to the challenge
 
-![Screenshot_41](https://user-images.githubusercontent.com/60603371/207232735-a994a398-6e49-4b93-a49e-46291558edbd.png)
-
-![Screenshot_42](https://user-images.githubusercontent.com/60603371/207232749-b0dfc6dc-0f4d-4ae5-9402-42c2387323f5.png)
 
 ## Challenge Resources
 
