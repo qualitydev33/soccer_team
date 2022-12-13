@@ -1,3 +1,6 @@
+/*
+ * @Description:JS Tricks
+ */
 export function utilIsNull(val) {
     return val === null || val === undefined || String(val).toLowerCase() === "n/a"
 }
@@ -25,10 +28,11 @@ export function utilCompareObject(obj1, obj2) {
 }
 
 export function utilIsNullInArrayOfObj(arr, keyArr) {
+    let nullIdx = -1
     const hasNull = (ele) => {
         let result = false
-        keyArr.map(item => {
-            if (ele[item] === null) { result = true }
+        keyArr.map((item, idx) => {
+            if (ele[item] === null) { result = true; }
         })
         return result
     }

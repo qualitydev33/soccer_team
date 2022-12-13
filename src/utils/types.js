@@ -1,6 +1,7 @@
+/*
+ * @Description: Data Types
+ */
 import PropTypes from "prop-types";
-
-
 
 export const PlayerType = PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

@@ -1,4 +1,5 @@
 import { PlayerType } from "utils/types"
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const PlayerCard = ({
     player
@@ -10,7 +11,13 @@ const PlayerCard = ({
         <>
             {Object.values(player).length > 0 && 
                 <div className="relative w-full p-6 flex flex-col bg-c_neutral_1 rounded">
-                    <img className="player-card-img w-[175px] mx-auto" src={player.player_image} alt={`player_img_${player.id}`} />
+                    <LazyLoadImage 
+                        className="player-card-img w-[175px] mx-auto" 
+                        src={player.player_image} 
+                        alt={`player_img_${player.id}`} 
+                        height={262}
+                        width={175}
+                    />
                     <h1 className="absolute top-6 left-7 text-[109px] leading-[100px] font-semibold text-c_text_6 text-opacity-50">{player.jersey_number}</h1>
                     <h1 className="absolute top-10 left-8 text-[41px] font-semibold text-c_primary_yellow">{player.jersey_number}</h1>
                     <div className="relative flex flex-col -mt-24">
@@ -29,7 +36,13 @@ const PlayerCard = ({
                         <div className="flex flex-col gap-y-2">
                             <h6 className="text-c_text_2 font-normal">Nationality</h6>
                             <div className="flex items-center gap-x-2">
-                                <img className="w-4 h-4 rounded-full border border-c_text_2" src={player.flag_image} alt="flag-img" />
+                                <LazyLoadImage 
+                                    className="rounded-full border border-c_text_2" 
+                                    src={player.flag_image}
+                                    width={16}
+                                    height={16}
+                                    alt="flag-img"
+                                />
                                 <h5 className="text_overflow_one_line text-c_text_1 font-medium">{player.nationality}</h5>
                             </div>
                             

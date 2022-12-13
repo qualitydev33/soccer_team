@@ -12,7 +12,7 @@ You are to develop a Football Manager app, where a team can be managed, players 
 
 [Figma Design File](https://www.figma.com/file/Pi9hLcIryDsnlZxzTLA2HV/React-Challenge?node-id=0%3A1)
 
-CSV Files: [psg-roster.csv](https://docs.google.com/spreadsheets/d/1qJ4YLA3snn_MsWMo7yiQ8GDyPNMBD4kc389ifyLHyLM/edit?usp=sharing) and [psg-missing-field.csv](https://docs.google.com/spreadsheets/d/1sLfUXI23ljavx-M6tIYEHBYnrnaA3VDXVr8nImH3Rl8/edit?usp=sharing)
+CSV Files: [psg-roster.csv](https://drive.google.com/file/d/1Of4_bu8mDLlxR8yqSAgo9FRz1n9vE3gA/view?usp=sharing) and [psg-missing-field.csv](https://drive.google.com/file/d/1RAv7APghmIuZwnpG5U6Z6qrxXcUgcl3x/view?usp=sharing)
 
 
 ## Challenge rules
@@ -94,4 +94,3 @@ There are 2 features:
         *   For Goalkeepers the stats are `Clean Sheets` and `Saves`
         *   For the other positions: `Goals` and `Assists`
         *   All positions have `Appearance` and `Minutes Played`
-

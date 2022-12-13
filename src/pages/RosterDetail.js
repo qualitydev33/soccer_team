@@ -18,6 +18,7 @@ import { TABLE_FIELD } from "utils/constants"
 import { 
     initTeam
 } from "store/team/slice"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 function convertTableRow(rowData, field) {
     let result;
@@ -124,7 +125,13 @@ const RosterDetail = ({cn}) => {
                                                 return (
                                                     <div key={`row_${sub_idx}`} className="flex-1">
                                                         {sub_idx === 0 && <div className="flex items-center gap-x-2 w-[196px]">
-                                                            <img className="rounded-full border border-c_text_2" src={item.flag_image} alt={`flag-img`} width={24} height={24} />
+                                                            <LazyLoadImage 
+                                                                className="rounded-full border border-c_text_2" 
+                                                                src={item.flag_image} 
+                                                                alt={`flag-img`} 
+                                                                width={24} 
+                                                                height={24} 
+                                                            />
                                                             <h5 className="font-medium text-c_text_2">{item.player_name}</h5>
                                                         </div>}
                                                         {sub_idx !== 0 && <h5 className="text-left text-sm font-medium text-c_text_2">{convertTableRow(item, sub_item.toLowerCase().replaceAll(" ", "_"))}</h5>}

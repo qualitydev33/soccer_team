@@ -4,7 +4,6 @@
 
 You are to develop a Football Manager app, where a team can be managed, players added, deleted or updated. And a view of the team’s formation is visible with the starters being shown in the field. Next you’ll be introduced to the challenge
 
-<!-- [![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=hsmamozWpqA) -->
 
 ## Challenge Resources
 
@@ -12,7 +11,7 @@ You are to develop a Football Manager app, where a team can be managed, players 
 
 [Figma Design File](https://www.figma.com/file/Pi9hLcIryDsnlZxzTLA2HV/React-Challenge?node-id=0%3A1)
 
-CSV Files: [psg-roster.csv](https://docs.google.com/spreadsheets/d/1qJ4YLA3snn_MsWMo7yiQ8GDyPNMBD4kc389ifyLHyLM/edit?usp=sharing) and [psg-missing-field.csv](https://docs.google.com/spreadsheets/d/1sLfUXI23ljavx-M6tIYEHBYnrnaA3VDXVr8nImH3Rl8/edit?usp=sharing)
+CSV Files: [psg-roster.csv]() and [psg-players-with-missing-field.csv]()
 
 
 ## Challenge rules

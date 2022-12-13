@@ -1,18 +1,37 @@
+/*
+ * @Description: Constants
+ */
 export const WSTORAGE_KEY = {
     team: 'team',
     teamName: 'teamName'
 }
-
-export const TABLE_FIELD = ["Player Name", "Jersey Number", "Position", "Height", "Weight", "Nationality", "Appearances", "Minutes Played"]
-    // export const PLAYER_POSITIONS = ["Goalkeeper", "Defender", "Midfielder", "Forward"]
+export const TABLE_FIELD = [
+    "Player Name",
+    "Jersey Number",
+    "Position",
+    "Height",
+    "Weight",
+    "Nationality",
+    "Appearances",
+    "Minutes Played"
+]
 export const PLAYER_POSITIONS = {
     goalkeeper: "Goalkeeper",
     defender: "Defender",
     midfielder: "Midfielder",
     forward: "Forward"
 }
-export const NATIONALITY = ["Italian", "Portuguese", "Dutch", "Costa Rican", "French", "Spanish", "Morocco", "Brazilian", "Argentinian"]
-
+export const NATIONALITY = [
+    "Italian",
+    "Portuguese",
+    "Dutch",
+    "Costa Rican",
+    "French",
+    "Spanish",
+    "Morocco",
+    "Brazilian",
+    "Argentinian"
+]
 export const FORMATION_MODAL_STATUS = {
     TOO_MANY_STARTER: {
         value: 'TOO_MANY_STARTER',
